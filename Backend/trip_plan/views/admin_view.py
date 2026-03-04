@@ -22,9 +22,14 @@ class AdminDestinationViewSet(viewsets.ModelViewSet):
         """تخصيص الإضافة لاستخدام الخدمة ومعالجة الصور"""
         images = request.FILES.getlist('images') if hasattr(request.FILES, 'getlist') else []
         data = request.data.copy() if hasattr(request.data, 'copy') else dict(request.data)
+        if hasattr(data, "pop"):
+            data.pop("images", None)
+
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
         
         # استدعاء الخدمة لإنشاء الوجهة مع صورها (Atomic Transaction)
-        dest = AdminCRUDService.create_destination(data, images)
+        dest = AdminCRUDService.create_destination(serializer.validated_data, images)
         
         serializer = self.get_serializer(dest)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -35,9 +40,14 @@ class AdminDestinationViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         images = request.FILES.getlist('images') if hasattr(request.FILES, 'getlist') else []
         data = request.data.copy() if hasattr(request.data, 'copy') else dict(request.data)
+        if hasattr(data, "pop"):
+            data.pop("images", None)
+
+        serializer = self.get_serializer(instance, data=data, partial=partial)
+        serializer.is_valid(raise_exception=True)
         
         updated_instance = AdminCRUDService.update_destination(
-            instance.id, data, new_images=images
+            instance.id, serializer.validated_data, new_images=images
         )
         
         serializer = self.get_serializer(updated_instance)
@@ -109,15 +119,24 @@ class AdminEventViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         images = request.FILES.getlist('images') if hasattr(request.FILES, 'getlist') else []
         data = request.data.copy() if hasattr(request.data, 'copy') else dict(request.data)
-        event = AdminCRUDService.create_event(data, images)
+        if hasattr(data, "pop"):
+            data.pop("images", None)
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        event = AdminCRUDService.create_event(serializer.validated_data, images)
         serializer = self.get_serializer(event)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
         instance = self.get_object()
         images = request.FILES.getlist('images') if hasattr(request.FILES, 'getlist') else []
         data = request.data.copy() if hasattr(request.data, 'copy') else dict(request.data)
-        updated_instance = AdminCRUDService.update_event(instance.id, data, new_images=images)
+        if hasattr(data, "pop"):
+            data.pop("images", None)
+        serializer = self.get_serializer(instance, data=data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        updated_instance = AdminCRUDService.update_event(instance.id, serializer.validated_data, new_images=images)
         serializer = self.get_serializer(updated_instance)
         return Response(serializer.data)
 

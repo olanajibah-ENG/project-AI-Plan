@@ -12,7 +12,7 @@ load_dotenv(BASE_DIR / 'trip_plan' / '.env')
 # إعدادات الأمان (تأكد من تغييرها في الإنتاج)
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-your-secret-key-here')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [h.strip() for h in os.getenv("ALLOWED_HOSTS", "*").split(",") if h.strip()]
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
@@ -63,21 +63,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# إعداد قاعدة البيانات MySQL
-# ملاحظة: تأكد من إنشاء قاعدة البيانات باسم trip_db أولاً
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trip_db',
-        'USER': 'trip_user', # اسم المستخدم الخاص بك
-        'PASSWORD': 'password123',   # كلمة السر الخاصة بك
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+# إعداد قاعدة البيانات
+# الوضع الافتراضي: SQLite لتسهيل التطوير والاختبار المحلي.
+# يمكن التحويل إلى MySQL عبر متغير DB_ENGINE=mysql.
+DB_ENGINE = os.getenv('DB_ENGINE', 'sqlite').lower()
+if DB_ENGINE == 'mysql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.getenv('DB_NAME', 'trip_db'),
+            'USER': os.getenv('DB_USER', 'trip_user'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'password123'),
+            'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+            'PORT': os.getenv('DB_PORT', '3306'),
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.getenv('DB_SQLITE_PATH', str(BASE_DIR / 'db.sqlite3')),
+        }
+    }
 
 # تحديد موديل المستخدم المخصص (RE-FR-01)
 AUTH_USER_MODEL = 'trip_plan.User'

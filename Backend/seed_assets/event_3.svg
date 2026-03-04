@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="festivalSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4894a" stop-opacity="0.7"/>
+      <stop offset="40%" stop-color="#e8c070"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <radialGradient id="warmAtmo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="festGlow">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="steamBlur">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#festivalSky)"/>
+  <ellipse cx="640" cy="360" rx="600" ry="300" fill="url(#warmAtmo)"/>
+
+  <!-- Background buildings -->
+  <g fill="#2c1810" opacity="0.12">
+    <rect x="0" y="200" width="100" height="520"/>
+    <rect x="110" y="180" width="80" height="540"/>
+    <rect x="200" y="220" width="60" height="500"/>
+    <rect x="1020" y="190" width="80" height="530"/>
+    <rect x="1110" y="210" width="70" height="510"/>
+    <rect x="1190" y="180" width="90" height="540"/>
+  </g>
+
+  <!-- Market stall structures -->
+  <!-- Stall 1 - far left -->
+  <g>
+    <rect x="80" y="320" width="180" height="200" fill="#2c1810" opacity="0.4"/>
+    <!-- Awning -->
+    <path d="M60,320 L170,280 L280,320 Z" fill="#c96442" opacity="0.6"/>
+    <path d="M70,318 L170,282 L270,318" fill="none" stroke="#c96442" stroke-width="1" opacity="0.4"/>
+    <!-- Awning stripes -->
+    <path d="M90,315 L120,300 L130,315" fill="#faf5ed" opacity="0.15"/>
+    <path d="M150,315 L170,305 L190,315" fill="#faf5ed" opacity="0.15"/>
+    <path d="M210,315 L230,305 L250,315" fill="#faf5ed" opacity="0.15"/>
+    <!-- Display counter -->
+    <rect x="90" y="400" width="160" height="10" fill="#d4a05a" opacity="0.4"/>
+    <!-- Items on display -->
+    <g fill="#b8860b" opacity="0.2">
+      <circle cx="120" cy="395" r="8"/>
+      <circle cx="145" cy="393" r="6"/>
+      <circle cx="170" cy="395" r="8"/>
+      <circle cx="200" cy="393" r="7"/>
+      <circle cx="225" cy="395" r="6"/>
+    </g>
+  </g>
+
+  <!-- Stall 2 - center-left -->
+  <g>
+    <rect x="300" y="300" width="200" height="220" fill="#2c1810" opacity="0.45"/>
+    <!-- Awning -->
+    <path d="M280,300 L400,255 L520,300 Z" fill="#1a6b5a" opacity="0.5"/>
+    <path d="M290,298 L400,258 L510,298" fill="none" stroke="#1a6b5a" stroke-width="1" opacity="0.35"/>
+    <!-- Awning stripes -->
+    <path d="M310,295 L340,280 L360,295" fill="#faf5ed" opacity="0.1"/>
+    <path d="M380,295 L400,283 L420,295" fill="#faf5ed" opacity="0.1"/>
+    <path d="M440,295 L460,283 L480,295" fill="#faf5ed" opacity="0.1"/>
+    <!-- Counter -->
+    <rect x="310" y="380" width="180" height="10" fill="#d4a05a" opacity="0.4"/>
+    <!-- Items -->
+    <g fill="#c96442" opacity="0.2">
+      <rect x="320" y="365" width="15" height="18" rx="2"/>
+      <rect x="345" y="368" width="12" height="15" rx="2"/>
+      <rect x="370" y="365" width="15" height="18" rx="2"/>
+      <rect x="395" y="367" width="14" height="16" rx="2"/>
+      <rect x="425" y="365" width="15" height="18" rx="2"/>
+      <rect x="455" y="368" width="12" height="15" rx="2"/>
+    </g>
+    <!-- Steam wisps from this stall (food) -->
+    <g fill="#faf5ed" opacity="0.08" filter="url(#steamBlur)">
+      <ellipse cx="370" cy="340" rx="20" ry="15"/>
+      <ellipse cx="380" cy="320" rx="15" ry="12"/>
+      <ellipse cx="375" cy="300" rx="12" ry="10"/>
+      <ellipse cx="420" cy="345" rx="18" ry="12"/>
+      <ellipse cx="425" cy="325" rx="14" ry="10"/>
+    </g>
+  </g>
+
+  <!-- Stall 3 - center -->
+  <g>
+    <rect x="540" y="280" width="200" height="240" fill="#2c1810" opacity="0.5"/>
+    <!-- Awning (largest/closest) -->
+    <path d="M520,280 L640,230 L760,280 Z" fill="#c96442" opacity="0.65"/>
+    <path d="M530,278 L640,233 L750,278" fill="none" stroke="#c96442" stroke-width="1" opacity="0.45"/>
+    <!-- Awning stripes -->
+    <path d="M550,275 L580,258 L600,275" fill="#faf5ed" opacity="0.15"/>
+    <path d="M620,275 L640,260 L660,275" fill="#faf5ed" opacity="0.15"/>
+    <path d="M680,275 L700,260 L720,275" fill="#faf5ed" opacity="0.15"/>
+    <!-- Counter -->
+    <rect x="550" y="370" width="180" height="12" fill="#d4a05a" opacity="0.45"/>
+    <!-- Food display items -->
+    <g fill="#b8860b" opacity="0.25">
+      <circle cx="580" cy="362" r="10"/>
+      <circle cx="610" cy="360" r="8"/>
+      <circle cx="640" cy="362" r="10"/>
+      <circle cx="670" cy="360" r="9"/>
+      <circle cx="700" cy="362" r="8"/>
+    </g>
+    <!-- Major steam wisps -->
+    <g fill="#faf5ed" opacity="0.1" filter="url(#steamBlur)">
+      <ellipse cx="600" cy="320" rx="25" ry="18"/>
+      <ellipse cx="610" cy="295" rx="20" ry="15"/>
+      <ellipse cx="605" cy="270" rx="15" ry="12"/>
+      <ellipse cx="680" cy="325" rx="22" ry="16"/>
+      <ellipse cx="685" cy="300" rx="18" ry="13"/>
+      <ellipse cx="678" cy="275" rx="12" ry="10"/>
+    </g>
+  </g>
+
+  <!-- Stall 4 - center-right -->
+  <g>
+    <rect x="780" y="300" width="200" height="220" fill="#2c1810" opacity="0.45"/>
+    <!-- Awning -->
+    <path d="M760,300 L880,255 L1000,300 Z" fill="#b8860b" opacity="0.45"/>
+    <path d="M770,298 L880,258 L990,298" fill="none" stroke="#b8860b" stroke-width="1" opacity="0.3"/>
+    <path d="M790,295 L820,280 L840,295" fill="#faf5ed" opacity="0.1"/>
+    <path d="M860,295 L880,283 L900,295" fill="#faf5ed" opacity="0.1"/>
+    <path d="M920,295 L940,283 L960,295" fill="#faf5ed" opacity="0.1"/>
+    <rect x="790" y="380" width="180" height="10" fill="#d4a05a" opacity="0.4"/>
+    <g fill="#1a6b5a" opacity="0.2">
+      <circle cx="820" cy="374" r="7"/>
+      <circle cx="845" cy="375" r="6"/>
+      <circle cx="870" cy="373" r="8"/>
+      <circle cx="900" cy="375" r="6"/>
+      <circle cx="925" cy="374" r="7"/>
+      <circle cx="950" cy="375" r="6"/>
+    </g>
+    <g fill="#faf5ed" opacity="0.07" filter="url(#steamBlur)">
+      <ellipse cx="860" cy="340" rx="18" ry="13"/>
+      <ellipse cx="865" cy="318" rx="14" ry="10"/>
+      <ellipse cx="862" cy="298" rx="10" ry="8"/>
+    </g>
+  </g>
+
+  <!-- Stall 5 - far right -->
+  <g>
+    <rect x="1020" y="320" width="180" height="200" fill="#2c1810" opacity="0.4"/>
+    <path d="M1000,320 L1110,278 L1220,320 Z" fill="#1a6b5a" opacity="0.45"/>
+    <path d="M1010,318 L1110,282 L1210,318" fill="none" stroke="#1a6b5a" stroke-width="1" opacity="0.3"/>
+    <rect x="1030" y="400" width="160" height="10" fill="#d4a05a" opacity="0.4"/>
+    <g fill="#c96442" opacity="0.2">
+      <rect x="1050" y="385" width="18" height="18" rx="3"/>
+      <rect x="1080" y="387" width="15" height="16" rx="3"/>
+      <rect x="1110" y="385" width="18" height="18" rx="3"/>
+      <rect x="1140" y="387" width="15" height="16" rx="3"/>
+      <rect x="1165" y="385" width="18" height="18" rx="3"/>
+    </g>
+  </g>
+
+  <!-- Hanging lanterns between stalls -->
+  <g>
+    <!-- String -->
+    <path d="M170,280 Q400,260 640,270 Q880,280 1110,270" fill="none" stroke="#2c1810" stroke-width="0.8" opacity="0.25"/>
+    <!-- Lanterns -->
+    <g opacity="0.5">
+      <path d="M250,270 Q255,265 260,270 L258,285 Q255,288 252,285 Z" fill="#c96442"/>
+      <path d="M380,267 Q385,262 390,267 L388,282 Q385,285 382,282 Z" fill="#b8860b"/>
+      <path d="M510,270 Q515,265 520,270 L518,285 Q515,288 512,285 Z" fill="#c96442"/>
+      <path d="M640,272 Q645,267 650,272 L648,287 Q645,290 642,287 Z" fill="#b8860b"/>
+      <path d="M770,275 Q775,270 780,275 L778,290 Q775,293 772,290 Z" fill="#c96442"/>
+      <path d="M900,270 Q905,265 910,270 L908,285 Q905,288 902,285 Z" fill="#b8860b"/>
+      <path d="M1030,268 Q1035,263 1040,268 L1038,283 Q1035,286 1032,283 Z" fill="#c96442"/>
+    </g>
+    <!-- Lantern glows -->
+    <g fill="#b8860b" opacity="0.04" filter="url(#festGlow)">
+      <circle cx="255" cy="278" r="20"/>
+      <circle cx="385" cy="275" r="20"/>
+      <circle cx="515" cy="278" r="20"/>
+      <circle cx="645" cy="280" r="20"/>
+      <circle cx="775" cy="283" r="20"/>
+      <circle cx="905" cy="278" r="20"/>
+      <circle cx="1035" cy="276" r="20"/>
+    </g>
+  </g>
+
+  <!-- Ground / walkway -->
+  <rect x="0" y="520" width="1280" height="200" fill="#d4a05a" opacity="0.2"/>
+  <rect x="0" y="520" width="1280" height="4" fill="#2c1810" opacity="0.08"/>
+
+  <!-- Visitor silhouettes -->
+  <g fill="#2c1810" opacity="0.2">
+    <!-- Group 1 -->
+    <circle cx="200" cy="550" r="8"/>
+    <path d="M192,558 L188,600 L196,600 L198,580 L200,600 L202,580 L204,600 L212,600 L208,558 Z"/>
+    <circle cx="230" cy="548" r="8"/>
+    <path d="M222,556 L218,598 L226,598 L228,578 L230,598 L232,578 L234,598 L242,598 L238,556 Z"/>
+
+    <!-- Group 2 -->
+    <circle cx="500" cy="560" r="9"/>
+    <path d="M491,569 L487,618 L496,618 L498,594 L500,618 L502,594 L504,618 L513,618 L509,569 Z"/>
+    <circle cx="530" cy="555" r="8"/>
+    <path d="M522,563 L518,608 L526,608 L528,586 L530,608 L532,586 L534,608 L542,608 L538,563 Z"/>
+    <circle cx="555" cy="558" r="7"/>
+    <path d="M548,565 L545,605 L552,605 L554,586 L556,605 L558,586 L560,605 L567,605 L564,565 Z"/>
+
+    <!-- Group 3 -->
+    <circle cx="800" cy="555" r="8"/>
+    <path d="M792,563 L788,608 L796,608 L798,586 L800,608 L802,586 L804,608 L812,608 L808,563 Z"/>
+
+    <!-- Group 4 -->
+    <circle cx="1050" cy="552" r="9"/>
+    <path d="M1041,561 L1037,612 L1046,612 L1048,590 L1050,612 L1052,590 L1054,612 L1063,612 L1059,561 Z"/>
+  </g>
+
+  <!-- Warm atmosphere overlay -->
+  <rect width="1280" height="720" fill="#b8860b" opacity="0.05"/>
+</svg>

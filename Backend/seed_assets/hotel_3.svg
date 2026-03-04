@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="citySky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c96442" stop-opacity="0.7"/>
+      <stop offset="40%" stop-color="#d4894a"/>
+      <stop offset="70%" stop-color="#e8c070"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <linearGradient id="towerGlass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8dc5d6" stop-opacity="0.3"/>
+      <stop offset="30%" stop-color="#faf5ed" stop-opacity="0.15"/>
+      <stop offset="60%" stop-color="#8dc5d6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#5a9ebd" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="towerBody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d4c4b0"/>
+      <stop offset="50%" stop-color="#e8ddd0"/>
+      <stop offset="100%" stop-color="#c9b8a2"/>
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1810" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2c1810"/>
+    </linearGradient>
+    <radialGradient id="sunsetGlow" cx="0.3" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#c96442" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cityGlow">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#citySky)"/>
+  <ellipse cx="400" cy="300" rx="400" ry="250" fill="url(#sunsetGlow)"/>
+
+  <!-- Wispy clouds -->
+  <ellipse cx="200" cy="100" rx="160" ry="14" fill="#faf5ed" opacity="0.3"/>
+  <ellipse cx="800" cy="80" rx="180" ry="16" fill="#faf5ed" opacity="0.25"/>
+  <ellipse cx="1100" cy="130" rx="120" ry="10" fill="#faf5ed" opacity="0.2"/>
+
+  <!-- Far background buildings -->
+  <g fill="#2c1810" opacity="0.12">
+    <rect x="0" y="420" width="80" height="200"/>
+    <rect x="90" y="380" width="60" height="240"/>
+    <rect x="160" y="400" width="50" height="220"/>
+    <rect x="1050" y="390" width="70" height="230"/>
+    <rect x="1130" y="410" width="50" height="210"/>
+    <rect x="1190" y="380" width="90" height="240"/>
+  </g>
+
+  <!-- Mid-range buildings left -->
+  <g>
+    <rect x="40" y="340" width="100" height="300" fill="#d4c4b0" opacity="0.5"/>
+    <rect x="40" y="340" width="100" height="4" fill="#c96442" opacity="0.3"/>
+    <rect x="160" y="300" width="80" height="340" fill="#e8ddd0" opacity="0.5"/>
+    <rect x="160" y="300" width="80" height="4" fill="#c96442" opacity="0.3"/>
+    <rect x="260" y="360" width="90" height="280" fill="#d4c4b0" opacity="0.45"/>
+    <rect x="260" y="360" width="90" height="4" fill="#c96442" opacity="0.3"/>
+    <!-- Windows on left buildings -->
+    <g fill="#5a9ebd" opacity="0.1">
+      <rect x="60" y="360" width="15" height="20" rx="1"/>
+      <rect x="85" y="360" width="15" height="20" rx="1"/>
+      <rect x="110" y="360" width="15" height="20" rx="1"/>
+      <rect x="60" y="395" width="15" height="20" rx="1"/>
+      <rect x="85" y="395" width="15" height="20" rx="1"/>
+      <rect x="110" y="395" width="15" height="20" rx="1"/>
+      <rect x="175" y="320" width="15" height="20" rx="1"/>
+      <rect x="200" y="320" width="15" height="20" rx="1"/>
+      <rect x="175" y="355" width="15" height="20" rx="1"/>
+      <rect x="200" y="355" width="15" height="20" rx="1"/>
+    </g>
+  </g>
+
+  <!-- Mid-range buildings right -->
+  <g>
+    <rect x="850" y="320" width="100" height="320" fill="#d4c4b0" opacity="0.5"/>
+    <rect x="850" y="320" width="100" height="4" fill="#c96442" opacity="0.3"/>
+    <rect x="970" y="350" width="80" height="290" fill="#e8ddd0" opacity="0.45"/>
+    <rect x="970" y="350" width="80" height="4" fill="#c96442" opacity="0.3"/>
+    <rect x="1070" y="300" width="90" height="340" fill="#d4c4b0" opacity="0.5"/>
+    <rect x="1070" y="300" width="90" height="4" fill="#c96442" opacity="0.3"/>
+    <rect x="1180" y="340" width="100" height="300" fill="#e8ddd0" opacity="0.45"/>
+    <!-- Windows on right buildings -->
+    <g fill="#5a9ebd" opacity="0.1">
+      <rect x="870" y="340" width="15" height="20" rx="1"/>
+      <rect x="895" y="340" width="15" height="20" rx="1"/>
+      <rect x="920" y="340" width="15" height="20" rx="1"/>
+      <rect x="870" y="375" width="15" height="20" rx="1"/>
+      <rect x="895" y="375" width="15" height="20" rx="1"/>
+      <rect x="1090" y="320" width="15" height="20" rx="1"/>
+      <rect x="1115" y="320" width="15" height="20" rx="1"/>
+      <rect x="1140" y="320" width="15" height="20" rx="1"/>
+    </g>
+  </g>
+
+  <!-- Main hotel tower -->
+  <g>
+    <!-- Tower body -->
+    <rect x="480" y="80" width="320" height="560" fill="url(#towerBody)" rx="4"/>
+
+    <!-- Glass facade -->
+    <rect x="490" y="90" width="300" height="540" fill="url(#towerGlass)" rx="3"/>
+
+    <!-- Tower crown/top detail -->
+    <rect x="470" y="72" width="340" height="12" fill="#c96442" opacity="0.4" rx="2"/>
+    <rect x="520" y="60" width="240" height="16" fill="#e8ddd0" rx="2"/>
+    <rect x="560" y="50" width="160" height="14" fill="#d4c4b0" rx="2"/>
+
+    <!-- Antenna/spire -->
+    <rect x="636" y="20" width="8" height="34" fill="#d4c4b0" rx="1"/>
+    <circle cx="640" cy="18" r="4" fill="#b8860b" opacity="0.4"/>
+
+    <!-- Window grid -->
+    <g stroke="#c9b8a2" stroke-width="0.8" fill="none" opacity="0.3">
+      <!-- Vertical lines -->
+      <line x1="530" y1="90" x2="530" y2="630"/>
+      <line x1="570" y1="90" x2="570" y2="630"/>
+      <line x1="610" y1="90" x2="610" y2="630"/>
+      <line x1="640" y1="90" x2="640" y2="630"/>
+      <line x1="670" y1="90" x2="670" y2="630"/>
+      <line x1="710" y1="90" x2="710" y2="630"/>
+      <line x1="750" y1="90" x2="750" y2="630"/>
+      <!-- Horizontal lines -->
+      <line x1="490" y1="130" x2="790" y2="130"/>
+      <line x1="490" y1="170" x2="790" y2="170"/>
+      <line x1="490" y1="210" x2="790" y2="210"/>
+      <line x1="490" y1="250" x2="790" y2="250"/>
+      <line x1="490" y1="290" x2="790" y2="290"/>
+      <line x1="490" y1="330" x2="790" y2="330"/>
+      <line x1="490" y1="370" x2="790" y2="370"/>
+      <line x1="490" y1="410" x2="790" y2="410"/>
+      <line x1="490" y1="450" x2="790" y2="450"/>
+      <line x1="490" y1="490" x2="790" y2="490"/>
+      <line x1="490" y1="530" x2="790" y2="530"/>
+      <line x1="490" y1="570" x2="790" y2="570"/>
+      <line x1="490" y1="610" x2="790" y2="610"/>
+    </g>
+
+    <!-- Sky reflection on glass -->
+    <rect x="500" y="100" width="60" height="520" fill="#faf5ed" opacity="0.06"/>
+    <rect x="600" y="100" width="40" height="520" fill="#c96442" opacity="0.04"/>
+    <rect x="720" y="100" width="50" height="520" fill="#faf5ed" opacity="0.04"/>
+
+    <!-- Warm lit windows (some rooms) -->
+    <g fill="#b8860b" opacity="0.15">
+      <rect x="535" y="410" width="30" height="35"/>
+      <rect x="575" y="450" width="30" height="35"/>
+      <rect x="645" y="370" width="30" height="35"/>
+      <rect x="715" y="490" width="30" height="35"/>
+      <rect x="535" y="530" width="30" height="35"/>
+      <rect x="675" y="530" width="30" height="35"/>
+    </g>
+
+    <!-- Entrance canopy -->
+    <rect x="540" y="610" width="200" height="15" fill="#2c1810" opacity="0.4" rx="2"/>
+    <rect x="560" y="625" width="160" height="30" fill="#2c1810" opacity="0.3" rx="2"/>
+  </g>
+
+  <!-- Ground / street level -->
+  <rect x="0" y="640" width="1280" height="80" fill="url(#groundGrad)"/>
+
+  <!-- Street surface -->
+  <rect x="0" y="650" width="1280" height="70" fill="#2c1810" opacity="0.5"/>
+
+  <!-- Street lights -->
+  <g>
+    <!-- Light 1 -->
+    <rect x="398" y="520" width="4" height="130" fill="#2c1810" opacity="0.4"/>
+    <ellipse cx="400" cy="518" rx="12" ry="6" fill="#b8860b" opacity="0.4"/>
+    <ellipse cx="400" cy="530" rx="20" ry="10" fill="#b8860b" opacity="0.08" filter="url(#cityGlow)"/>
+
+    <!-- Light 2 -->
+    <rect x="198" y="540" width="4" height="110" fill="#2c1810" opacity="0.35"/>
+    <ellipse cx="200" cy="538" rx="10" ry="5" fill="#b8860b" opacity="0.35"/>
+    <ellipse cx="200" cy="548" rx="18" ry="8" fill="#b8860b" opacity="0.06" filter="url(#cityGlow)"/>
+
+    <!-- Light 3 -->
+    <rect x="878" y="520" width="4" height="130" fill="#2c1810" opacity="0.4"/>
+    <ellipse cx="880" cy="518" rx="12" ry="6" fill="#b8860b" opacity="0.4"/>
+    <ellipse cx="880" cy="530" rx="20" ry="10" fill="#b8860b" opacity="0.08" filter="url(#cityGlow)"/>
+
+    <!-- Light 4 -->
+    <rect x="1078" y="540" width="4" height="110" fill="#2c1810" opacity="0.35"/>
+    <ellipse cx="1080" cy="538" rx="10" ry="5" fill="#b8860b" opacity="0.35"/>
+  </g>
+
+  <!-- Sidewalk detail -->
+  <rect x="0" y="640" width="1280" height="3" fill="#faf5ed" opacity="0.08"/>
+
+  <!-- Warm atmosphere -->
+  <rect width="1280" height="720" fill="#c96442" opacity="0.04"/>
+</svg>

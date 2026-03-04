@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c96442"/>
+      <stop offset="40%" stop-color="#d4894a"/>
+      <stop offset="70%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#e8c96a"/>
+    </linearGradient>
+    <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0d3d30"/>
+    </linearGradient>
+    <linearGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#faf5ed" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#b8860b" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c96442" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sunDisc" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#faf5ed"/>
+      <stop offset="70%" stop-color="#e8c96a"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </radialGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a05a"/>
+      <stop offset="100%" stop-color="#c96442" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="waveShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#faf5ed" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#faf5ed" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#faf5ed" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#sky)"/>
+
+  <!-- Atmospheric haze bands -->
+  <rect x="0" y="200" width="1280" height="80" fill="#faf5ed" opacity="0.08"/>
+  <rect x="0" y="280" width="1280" height="60" fill="#b8860b" opacity="0.1"/>
+
+  <!-- Sun glow -->
+  <circle cx="900" cy="280" r="200" fill="url(#sunGlow)" filter="url(#glow)" opacity="0.7"/>
+  <circle cx="900" cy="280" r="120" fill="#faf5ed" opacity="0.1" filter="url(#glow)"/>
+
+  <!-- Sun disc -->
+  <circle cx="900" cy="280" r="55" fill="url(#sunDisc)"/>
+  <circle cx="900" cy="280" r="55" fill="#faf5ed" opacity="0.3"/>
+
+  <!-- Distant horizon clouds -->
+  <ellipse cx="300" cy="320" rx="200" ry="15" fill="#faf5ed" opacity="0.12"/>
+  <ellipse cx="700" cy="310" rx="150" ry="10" fill="#faf5ed" opacity="0.1"/>
+  <ellipse cx="1100" cy="325" rx="180" ry="12" fill="#faf5ed" opacity="0.08"/>
+
+  <!-- Distant sailboat silhouette -->
+  <g transform="translate(650, 340)" opacity="0.6">
+    <rect x="-1" y="0" width="2" height="25" fill="#2c1810"/>
+    <path d="M1,-20 L1,5 L-18,5 Z" fill="#2c1810" opacity="0.8"/>
+    <path d="M1,-15 L1,5 L12,5 Z" fill="#2c1810" opacity="0.6"/>
+    <ellipse cx="0" cy="8" rx="20" ry="3" fill="#2c1810" opacity="0.5"/>
+  </g>
+
+  <!-- Ocean - back layer -->
+  <path d="M0,380 C120,365 240,390 360,375 C480,360 600,385 720,370 C840,355 960,380 1080,365 C1180,355 1240,370 1280,360 L1280,720 L0,720 Z" fill="url(#ocean)"/>
+
+  <!-- Ocean wave layer 2 -->
+  <path d="M0,400 C160,385 320,410 480,395 C640,380 800,405 960,390 C1080,380 1200,400 1280,390 L1280,720 L0,720 Z" fill="#1a6b5a" opacity="0.8"/>
+
+  <!-- Sun reflection on water -->
+  <ellipse cx="900" cy="420" rx="80" ry="8" fill="#b8860b" opacity="0.25"/>
+  <ellipse cx="900" cy="440" rx="60" ry="5" fill="#b8860b" opacity="0.15"/>
+  <ellipse cx="900" cy="460" rx="40" ry="4" fill="#b8860b" opacity="0.1"/>
+  <rect x="870" y="380" width="60" height="100" fill="url(#waveShine)" opacity="0.3"/>
+
+  <!-- Ocean wave layer 3 -->
+  <path d="M0,430 C100,420 200,440 300,425 C400,415 500,435 600,420 C700,410 800,430 900,418 C1000,408 1100,428 1200,416 L1280,420 L1280,720 L0,720 Z" fill="#146050" opacity="0.9"/>
+
+  <!-- Wave foam lines -->
+  <path d="M0,428 C100,418 200,438 300,423 C400,413 500,433 600,418" fill="none" stroke="#faf5ed" stroke-width="1.5" opacity="0.15"/>
+  <path d="M600,418 C700,408 800,428 900,416 C1000,406 1100,426 1280,418" fill="none" stroke="#faf5ed" stroke-width="1.5" opacity="0.12"/>
+
+  <!-- Ocean wave layer 4 -->
+  <path d="M0,460 C180,448 360,468 540,455 C720,442 900,462 1080,450 C1180,444 1240,455 1280,450 L1280,720 L0,720 Z" fill="#0d3d30"/>
+
+  <!-- Wave highlights -->
+  <path d="M0,458 C180,446 360,466 540,453" fill="none" stroke="#faf5ed" stroke-width="1" opacity="0.1"/>
+  <path d="M700,448 C800,440 900,458 1000,448 C1100,440 1200,452 1280,448" fill="none" stroke="#faf5ed" stroke-width="1" opacity="0.08"/>
+
+  <!-- Sandy dunes - back -->
+  <path d="M0,550 C100,520 200,540 350,510 C500,480 580,530 700,520 L700,720 L0,720 Z" fill="url(#sand)" opacity="0.9"/>
+
+  <!-- Sandy dunes - front -->
+  <path d="M0,600 C80,570 180,590 280,560 C380,535 500,570 640,550 C700,540 720,555 750,545 L750,720 L0,720 Z" fill="#d4a05a"/>
+
+  <!-- Sand texture patterns -->
+  <path d="M50,610 C100,600 150,615 200,605 C250,595 300,610 350,600" fill="none" stroke="#c96442" stroke-width="0.8" opacity="0.3"/>
+  <path d="M30,635 C80,625 130,640 180,630 C230,620 280,635 330,625 C380,615 430,630 480,620" fill="none" stroke="#c96442" stroke-width="0.8" opacity="0.25"/>
+  <path d="M0,660 C60,650 120,665 180,655 C240,645 300,660 360,650 C420,640 480,655 540,645" fill="none" stroke="#c96442" stroke-width="0.8" opacity="0.2"/>
+  <path d="M100,580 C140,572 180,585 220,575" fill="none" stroke="#2c1810" stroke-width="0.5" opacity="0.15"/>
+  <path d="M200,555 C240,548 280,558 320,550" fill="none" stroke="#2c1810" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- Sand ripple dots -->
+  <circle cx="150" cy="620" r="1.5" fill="#c96442" opacity="0.2"/>
+  <circle cx="250" cy="600" r="1" fill="#c96442" opacity="0.2"/>
+  <circle cx="350" cy="630" r="1.5" fill="#c96442" opacity="0.15"/>
+  <circle cx="450" cy="610" r="1" fill="#c96442" opacity="0.18"/>
+
+  <!-- Beach foam where ocean meets sand -->
+  <path d="M620,540 C650,535 680,542 710,535 L720,538 C690,545 660,538 630,543 Z" fill="#faf5ed" opacity="0.2"/>
+
+  <!-- Distant birds -->
+  <g fill="none" stroke="#2c1810" stroke-width="1.5" opacity="0.4">
+    <path d="M200,180 Q205,174 210,180 Q215,174 220,180"/>
+    <path d="M240,160 Q244,155 248,160 Q252,155 256,160"/>
+    <path d="M170,200 Q174,195 178,200 Q182,195 186,200"/>
+  </g>
+
+  <!-- Warm atmospheric overlay -->
+  <rect width="1280" height="720" fill="#c96442" opacity="0.04"/>
+</svg>

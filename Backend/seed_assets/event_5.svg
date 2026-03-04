@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="hikeSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a" stop-opacity="0.5"/>
+      <stop offset="30%" stop-color="#4d9a8a"/>
+      <stop offset="60%" stop-color="#8dc5b0"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <linearGradient id="farMtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="midMtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1810" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="nearMtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1810" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="trailPath" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a05a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#c96442" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="hikeMist">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#hikeSky)"/>
+
+  <!-- Wispy clouds -->
+  <ellipse cx="300" cy="80" rx="180" ry="15" fill="#faf5ed" opacity="0.35"/>
+  <ellipse cx="800" cy="60" rx="200" ry="18" fill="#faf5ed" opacity="0.3"/>
+  <ellipse cx="1100" cy="100" rx="140" ry="12" fill="#faf5ed" opacity="0.25"/>
+
+  <!-- Far mountain range layer 1 -->
+  <path d="M0,380 L80,310 L160,340 L280,270 L400,320 L520,260 L640,300 L760,240 L880,290 L1000,250 L1100,280 L1200,240 L1280,280 L1280,440 L0,440 Z" fill="url(#farMtn)"/>
+
+  <!-- Mist between layers -->
+  <ellipse cx="640" cy="400" rx="600" ry="40" fill="#faf5ed" opacity="0.2" filter="url(#hikeMist)"/>
+  <ellipse cx="300" cy="390" rx="250" ry="30" fill="#faf5ed" opacity="0.15" filter="url(#hikeMist)"/>
+  <ellipse cx="1000" cy="395" rx="280" ry="35" fill="#faf5ed" opacity="0.15" filter="url(#hikeMist)"/>
+
+  <!-- Mid mountain range layer 2 -->
+  <path d="M0,440 L100,380 L220,410 L340,350 L460,390 L580,330 L700,370 L820,310 L940,360 L1060,320 L1180,360 L1280,340 L1280,520 L0,520 Z" fill="url(#midMtn)"/>
+
+  <!-- Mountain ridge details -->
+  <path d="M340,350 L400,380 L360,410" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.15"/>
+  <path d="M580,330 L640,360 L600,390" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.15"/>
+  <path d="M820,310 L880,340 L840,370" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.15"/>
+
+  <!-- Mist in valleys -->
+  <ellipse cx="500" cy="480" rx="200" ry="25" fill="#faf5ed" opacity="0.15" filter="url(#hikeMist)"/>
+  <ellipse cx="900" cy="470" rx="180" ry="22" fill="#faf5ed" opacity="0.12" filter="url(#hikeMist)"/>
+
+  <!-- Near mountain range layer 3 -->
+  <path d="M0,500 L120,440 L260,480 L380,420 L500,460 L620,400 L740,450 L860,390 L980,440 L1100,400 L1200,430 L1280,410 L1280,600 L0,600 Z" fill="url(#nearMtn)"/>
+
+  <!-- Trees on near mountains -->
+  <g fill="#2c1810" opacity="0.5">
+    <!-- Left slope trees -->
+    <path d="M140,470 L150,440 L160,470 Z"/>
+    <path d="M146,452 L150,440 L154,452 Z"/>
+    <path d="M200,460 L210,428 L220,460 Z"/>
+    <path d="M206,440 L210,428 L214,440 Z"/>
+    <path d="M270,475 L280,445 L290,475 Z"/>
+    <path d="M330,460 L342,425 L354,460 Z"/>
+    <path d="M338,440 L342,425 L346,440 Z"/>
+    <path d="M400,452 L410,420 L420,452 Z"/>
+    <path d="M470,465 L480,435 L490,465 Z"/>
+    <!-- Center trees -->
+    <path d="M540,450 L552,415 L564,450 Z"/>
+    <path d="M548,430 L552,415 L556,430 Z"/>
+    <path d="M620,440 L630,408 L640,440 Z"/>
+    <path d="M700,458 L712,425 L724,458 Z"/>
+    <path d="M708,440 L712,425 L716,440 Z"/>
+    <!-- Right slope trees -->
+    <path d="M780,445 L790,412 L800,445 Z"/>
+    <path d="M850,440 L862,405 L874,440 Z"/>
+    <path d="M858,418 L862,405 L866,418 Z"/>
+    <path d="M930,452 L940,420 L950,452 Z"/>
+    <path d="M1010,445 L1022,410 L1034,445 Z"/>
+    <path d="M1018,425 L1022,410 L1026,425 Z"/>
+    <path d="M1090,440 L1100,410 L1110,440 Z"/>
+    <path d="M1170,450 L1180,418 L1190,450 Z"/>
+  </g>
+
+  <!-- Winding trail/path -->
+  <g>
+    <!-- Trail - winds from bottom right up through mountains -->
+    <path d="M1100,720 C1080,680 1040,650 980,620 C900,580 840,560 780,540 C700,510 650,490 600,480 C530,465 470,470 400,490 C340,508 300,530 250,560 C200,590 160,620 130,660 C110,690 100,710 90,720" fill="none" stroke="#d4a05a" stroke-width="8" opacity="0.3" stroke-linecap="round"/>
+    <path d="M1100,720 C1080,680 1040,650 980,620 C900,580 840,560 780,540 C700,510 650,490 600,480 C530,465 470,470 400,490 C340,508 300,530 250,560 C200,590 160,620 130,660 C110,690 100,710 90,720" fill="none" stroke="#d4a05a" stroke-width="4" opacity="0.15" stroke-linecap="round"/>
+
+    <!-- Trail continues up into distant mountains -->
+    <path d="M600,480 C560,460 540,440 520,410 C500,380 490,350 500,320 C510,290 540,270 580,260" fill="none" stroke="#d4a05a" stroke-width="3" opacity="0.12" stroke-linecap="round"/>
+  </g>
+
+  <!-- Foreground vegetation -->
+  <g>
+    <!-- Grass/shrub clusters -->
+    <g fill="#1a6b5a" opacity="0.35">
+      <ellipse cx="100" cy="680" rx="40" ry="15"/>
+      <ellipse cx="200" cy="670" rx="35" ry="12"/>
+      <ellipse cx="350" cy="660" rx="30" ry="10"/>
+      <ellipse cx="500" cy="650" rx="35" ry="12"/>
+      <ellipse cx="700" cy="640" rx="30" ry="10"/>
+      <ellipse cx="900" cy="635" rx="35" ry="12"/>
+      <ellipse cx="1050" cy="640" rx="30" ry="10"/>
+      <ellipse cx="1200" cy="650" rx="40" ry="14"/>
+    </g>
+
+    <!-- Foreground trees -->
+    <g fill="#2c1810" opacity="0.75">
+      <path d="M40,720 L65,600 L90,720 Z"/>
+      <path d="M50,650 L65,600 L80,650 Z"/>
+      <rect x="62" y="695" width="6" height="25"/>
+
+      <path d="M1180,720 L1210,590 L1240,720 Z"/>
+      <path d="M1192,645 L1210,590 L1228,645 Z"/>
+      <rect x="1207" y="695" width="6" height="25"/>
+
+      <path d="M1240,720 L1260,620 L1280,720 Z"/>
+      <path d="M1248,665 L1260,620 L1272,665 Z"/>
+    </g>
+  </g>
+
+  <!-- Foreground ground -->
+  <path d="M0,680 C200,665 400,680 640,670 C880,660 1100,675 1280,665 L1280,720 L0,720 Z" fill="#2c1810" opacity="0.6"/>
+
+  <!-- Rock details on path -->
+  <g fill="#2c1810" opacity="0.15">
+    <ellipse cx="800" cy="548" rx="8" ry="4"/>
+    <ellipse cx="650" cy="485" rx="6" ry="3"/>
+    <ellipse cx="450" cy="495" rx="7" ry="3.5"/>
+    <ellipse cx="300" cy="540" rx="8" ry="4"/>
+  </g>
+
+  <!-- Birds in distance -->
+  <g fill="none" stroke="#2c1810" stroke-width="1.5" opacity="0.3">
+    <path d="M600,150 Q605,144 610,150 Q615,144 620,150"/>
+    <path d="M640,132 Q644,127 648,132 Q652,127 656,132"/>
+    <path d="M570,165 Q574,160 578,165 Q582,160 586,165"/>
+    <path d="M660,148 Q663,143 666,148 Q669,143 672,148"/>
+  </g>
+</svg>

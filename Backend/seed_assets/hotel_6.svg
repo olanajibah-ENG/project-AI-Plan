@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="palaceSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4894a" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#e8c070"/>
+      <stop offset="70%" stop-color="#f0d88a"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <linearGradient id="palaceWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf5ed"/>
+      <stop offset="100%" stop-color="#e8ddd0"/>
+    </linearGradient>
+    <radialGradient id="goldenLight" cx="0.5" cy="0.3" r="0.5">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gardenPath" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a05a" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#c96442" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="palaceGlow">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#palaceSky)"/>
+  <ellipse cx="640" cy="200" rx="500" ry="250" fill="url(#goldenLight)"/>
+
+  <!-- Distant landscape -->
+  <path d="M0,450 C200,440 400,450 640,440 C880,430 1100,445 1280,435 L1280,480 L0,480 Z" fill="#1a6b5a" opacity="0.1"/>
+
+  <!-- Garden / grounds -->
+  <rect x="0" y="460" width="1280" height="260" fill="#1a6b5a" opacity="0.12"/>
+  <path d="M0,460 C320,450 640,465 960,455 C1120,450 1200,460 1280,455 L1280,720 L0,720 Z" fill="#e8ddd0" opacity="0.2"/>
+
+  <!-- Palace building -->
+  <g>
+    <!-- Main facade -->
+    <rect x="280" y="160" width="720" height="320" fill="url(#palaceWall)" rx="4"/>
+
+    <!-- Central dome -->
+    <path d="M520,160 Q640,50 760,160" fill="#faf5ed"/>
+    <path d="M540,160 Q640,70 740,160" fill="#e8ddd0" opacity="0.5"/>
+    <circle cx="640" cy="80" r="8" fill="#b8860b" opacity="0.5"/>
+    <!-- Dome finial -->
+    <line x1="640" y1="48" x2="640" y2="72" stroke="#b8860b" stroke-width="2" opacity="0.5"/>
+    <circle cx="640" cy="46" r="4" fill="#b8860b" opacity="0.4"/>
+
+    <!-- Side towers with small domes -->
+    <rect x="260" y="120" width="60" height="360" fill="#e8ddd0" rx="2"/>
+    <path d="M260,120 Q290,85 320,120" fill="#faf5ed"/>
+    <circle cx="290" cy="100" r="5" fill="#b8860b" opacity="0.35"/>
+
+    <rect x="960" y="120" width="60" height="360" fill="#e8ddd0" rx="2"/>
+    <path d="M960,120 Q990,85 1020,120" fill="#faf5ed"/>
+    <circle cx="990" cy="100" r="5" fill="#b8860b" opacity="0.35"/>
+
+    <!-- Ornate cornice line -->
+    <rect x="280" y="155" width="720" height="8" fill="#b8860b" opacity="0.15"/>
+    <rect x="280" y="155" width="720" height="3" fill="#c96442" opacity="0.2"/>
+
+    <!-- Upper arched windows row -->
+    <g>
+      <path d="M350,185 Q370,170 390,185 L390,230 L350,230 Z" fill="#2c1810" opacity="0.3"/>
+      <path d="M420,185 Q440,170 460,185 L460,230 L420,230 Z" fill="#2c1810" opacity="0.3"/>
+      <path d="M490,185 Q510,170 530,185 L530,230 L490,230 Z" fill="#2c1810" opacity="0.3"/>
+      <!-- Central larger window -->
+      <path d="M590,180 Q640,155 690,180 L690,240 L590,240 Z" fill="#2c1810" opacity="0.35"/>
+      <path d="M600,185 Q640,165 680,185" fill="none" stroke="#b8860b" stroke-width="1" opacity="0.25"/>
+      <path d="M750,185 Q770,170 790,185 L790,230 L750,230 Z" fill="#2c1810" opacity="0.3"/>
+      <path d="M820,185 Q840,170 860,185 L860,230 L820,230 Z" fill="#2c1810" opacity="0.3"/>
+      <path d="M890,185 Q910,170 930,185 L930,230 L890,230 Z" fill="#2c1810" opacity="0.3"/>
+    </g>
+
+    <!-- Middle decorative band -->
+    <rect x="280" y="250" width="720" height="6" fill="#b8860b" opacity="0.12"/>
+
+    <!-- Lower arched windows row -->
+    <g>
+      <path d="M340,275 Q365,258 390,275 L390,330 L340,330 Z" fill="#2c1810" opacity="0.25"/>
+      <path d="M420,275 Q445,258 470,275 L470,330 L420,330 Z" fill="#2c1810" opacity="0.25"/>
+      <path d="M810,275 Q835,258 860,275 L860,330 L810,330 Z" fill="#2c1810" opacity="0.25"/>
+      <path d="M890,275 Q915,258 940,275 L940,330 L890,330 Z" fill="#2c1810" opacity="0.25"/>
+    </g>
+
+    <!-- Grand entrance arch -->
+    <g>
+      <path d="M560,270 Q640,220 720,270 L720,480 L560,480 Z" fill="#2c1810" opacity="0.5"/>
+      <path d="M570,275 Q640,230 710,275" fill="none" stroke="#b8860b" stroke-width="2" opacity="0.2"/>
+      <path d="M580,280 Q640,240 700,280" fill="none" stroke="#b8860b" stroke-width="1" opacity="0.15"/>
+      <!-- Door -->
+      <rect x="600" y="360" width="36" height="120" fill="#2c1810" opacity="0.7" rx="2"/>
+      <rect x="644" y="360" width="36" height="120" fill="#2c1810" opacity="0.7" rx="2"/>
+      <circle cx="632" cy="420" r="3" fill="#b8860b" opacity="0.4"/>
+      <circle cx="648" cy="420" r="3" fill="#b8860b" opacity="0.4"/>
+    </g>
+
+    <!-- Lower facade details -->
+    <rect x="280" y="340" width="720" height="4" fill="#b8860b" opacity="0.1"/>
+
+    <!-- Small windows lower level -->
+    <g fill="#2c1810" opacity="0.15">
+      <rect x="340" y="360" width="30" height="40" rx="2"/>
+      <rect x="390" y="360" width="30" height="40" rx="2"/>
+      <rect x="440" y="360" width="30" height="40" rx="2"/>
+      <rect x="790" y="360" width="30" height="40" rx="2"/>
+      <rect x="840" y="360" width="30" height="40" rx="2"/>
+      <rect x="890" y="360" width="30" height="40" rx="2"/>
+    </g>
+
+    <!-- Tower windows -->
+    <g fill="#2c1810" opacity="0.2">
+      <path d="M275,160 Q290,148 305,160 L305,195 L275,195 Z"/>
+      <path d="M275,220 Q290,210 305,220 L305,255 L275,255 Z"/>
+      <path d="M275,280 Q290,270 305,280 L305,315 L275,315 Z"/>
+      <path d="M975,160 Q990,148 1005,160 L1005,195 L975,195 Z"/>
+      <path d="M975,220 Q990,210 1005,220 L1005,255 L975,255 Z"/>
+      <path d="M975,280 Q990,270 1005,280 L1005,315 L975,315 Z"/>
+    </g>
+  </g>
+
+  <!-- Garden pathway -->
+  <path d="M560,480 L520,520 L480,580 L460,660 L440,720 L840,720 L820,660 L800,580 L760,520 L720,480 Z" fill="url(#gardenPath)"/>
+
+  <!-- Path centerline -->
+  <path d="M640,480 L640,720" fill="none" stroke="#c96442" stroke-width="0.8" opacity="0.15"/>
+
+  <!-- Garden hedges -->
+  <g fill="#1a6b5a" opacity="0.2">
+    <ellipse cx="400" cy="530" rx="80" ry="20"/>
+    <ellipse cx="880" cy="530" rx="80" ry="20"/>
+    <ellipse cx="350" cy="600" rx="70" ry="18"/>
+    <ellipse cx="930" cy="600" rx="70" ry="18"/>
+    <ellipse cx="380" cy="670" rx="60" ry="15"/>
+    <ellipse cx="900" cy="670" rx="60" ry="15"/>
+  </g>
+
+  <!-- Ornamental trees -->
+  <g>
+    <rect x="318" y="480" width="4" height="45" fill="#2c1810" opacity="0.3"/>
+    <ellipse cx="320" cy="470" rx="20" ry="18" fill="#1a6b5a" opacity="0.3"/>
+    <rect x="958" y="480" width="4" height="45" fill="#2c1810" opacity="0.3"/>
+    <ellipse cx="960" cy="470" rx="20" ry="18" fill="#1a6b5a" opacity="0.3"/>
+  </g>
+
+  <!-- Fountain in garden -->
+  <ellipse cx="640" cy="600" rx="40" ry="15" fill="#1a6b5a" opacity="0.2"/>
+  <rect x="636" y="570" width="8" height="30" fill="#d4c4b0" opacity="0.3" rx="1"/>
+  <circle cx="640" cy="568" r="4" fill="#1a6b5a" opacity="0.15"/>
+
+  <!-- Golden light glow on building -->
+  <ellipse cx="640" cy="300" rx="200" ry="150" fill="#b8860b" opacity="0.04" filter="url(#palaceGlow)"/>
+
+  <!-- Warm overlay -->
+  <rect width="1280" height="720" fill="#b8860b" opacity="0.04"/>
+</svg>

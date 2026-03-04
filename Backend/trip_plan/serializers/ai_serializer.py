@@ -48,6 +48,11 @@ class AIStructuredResponseSerializer(serializers.Serializer):
         required=False,
         allow_blank=True
     )
+
+    collected_requirements = serializers.DictField(
+        required=True,
+        help_text="المتطلبات التي تم جمعها حتى الآن"
+    )
     
     # تفاصيل الخطة (تظهر فقط عندما تكون الحالة complete)
     selected_plan = AIPlanDetailsSerializer(required=False)

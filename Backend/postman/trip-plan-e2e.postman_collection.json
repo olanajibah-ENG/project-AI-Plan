@@ -1,0 +1,232 @@
+{
+  "info": {
+    "name": "Trip Plan Backend E2E",
+    "_postman_id": "a6d256f3-4a5b-4ec8-b5d0-013cd0de0001",
+    "description": "End-to-end backend test flow for auth, admin CRUD, and AI chat planning.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1) Register User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Register status is 201', function () { pm.response.to.have.status(201); });",
+              "const json = pm.response.json();",
+              "pm.test('Registered role is user', function () { pm.expect(json.user.role).to.eql('user'); });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{user_username}}\",\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": "{{base_url}}/auth/register/"
+      }
+    },
+    {
+      "name": "2) Login Admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Admin login status is 200', function () { pm.response.to.have.status(200); });",
+              "const json = pm.response.json();",
+              "pm.environment.set('admin_access', json.tokens.access);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{admin_username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": "{{base_url}}/auth/login/"
+      }
+    },
+    {
+      "name": "3) Create Destination (Admin)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Destination create status is 201', function () { pm.response.to.have.status(201); });",
+              "const json = pm.response.json();",
+              "pm.environment.set('destination_id', json.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_access}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"{{destination_name}}\",\n  \"country\": \"Saudi Arabia\",\n  \"flight_cost\": \"200.00\",\n  \"daily_living_cost\": \"50.00\",\n  \"is_coastal\": false,\n  \"description\": \"Mountain city\",\n  \"best_seasons\": \"summer,spring\"\n}"
+        },
+        "url": "{{base_url}}/admin/destinations/"
+      }
+    },
+    {
+      "name": "4) Create Hotel (Admin)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Hotel create status is 201', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_access}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"destination\": {{destination_id}},\n  \"name\": \"Peak Hotel\",\n  \"stars\": 4,\n  \"price_per_night\": \"100.00\",\n  \"is_sea_view\": false\n}"
+        },
+        "url": "{{base_url}}/admin/hotels/"
+      }
+    },
+    {
+      "name": "5) Create Event (Admin)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Event create status is 201', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_access}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"destination\": {{destination_id}},\n  \"name\": \"Hiking Tour\",\n  \"description\": \"Morning mountain hike\",\n  \"season\": \"summer\",\n  \"price_per_person\": \"25.00\",\n  \"duration_hours\": 3,\n  \"is_free\": false\n}"
+        },
+        "url": "{{base_url}}/admin/events/"
+      }
+    },
+    {
+      "name": "6) Login User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('User login status is 200', function () { pm.response.to.have.status(200); });",
+              "const json = pm.response.json();",
+              "pm.environment.set('user_access', json.tokens.access);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{user_username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": "{{base_url}}/auth/login/"
+      }
+    },
+    {
+      "name": "7) AI Chat - Turn 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('AI turn 1 status code is 200', function () { pm.response.to.have.status(200); });",
+              "const json = pm.response.json();",
+              "pm.test('AI returns options_presented', function () { pm.expect(json.status).to.eql('options_presented'); });",
+              "pm.environment.set('ai_session_id', json.session_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{user_access}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"أريد رحلة. الميزانية 2000 دولار، 5 أيام، شخصين، أفضل جبلية، فندق 4 نجوم، الموسم summer\"\n}"
+        },
+        "url": "{{base_url}}/ai/chat/"
+      }
+    },
+    {
+      "name": "8) AI Chat - Turn 2 Confirm Option 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('AI turn 2 status code is 200', function () { pm.response.to.have.status(200); });",
+              "const json = pm.response.json();",
+              "pm.test('AI confirms plan', function () { pm.expect(json.status).to.eql('plan_confirmed'); });",
+              "pm.test('Plan has grounded destination and hotel ids', function () {",
+              "  pm.expect(json.selected_plan.destination_id).to.be.a('number');",
+              "  pm.expect(json.selected_plan.hotel_id).to.be.a('number');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{user_access}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"أختار الخيار رقم 1\",\n  \"session_id\": \"{{ai_session_id}}\"\n}"
+        },
+        "url": "{{base_url}}/ai/chat/"
+      }
+    }
+  ]
+}

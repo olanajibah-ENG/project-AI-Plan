@@ -1,19 +1,33 @@
-import os
 import json
 import re
 import ast
 import logging
-import requests
 import uuid
-from decimal import Decimal
+from typing import Optional
 from django.db.models import Q
 from django.utils import timezone
 from django.conf import settings
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
+from langchain_core.tools import StructuredTool
+from pydantic import BaseModel, Field
 from ..models.travel_model import Destination, Hotel, ConversationSession, Event
 from ..serializers.travel_serializer import DestinationSerializer, HotelSerializer, EventSerializer
 
 
 logger = logging.getLogger(__name__)
+
+
+class UserSignalSchema(BaseModel):
+    budget: Optional[float] = Field(default=None)
+    days: Optional[int] = Field(default=None)
+    people: Optional[int] = Field(default=None)
+    is_coastal: Optional[bool] = Field(default=None)
+    min_stars: Optional[int] = Field(default=None)
+    season: Optional[str] = Field(default=None)
+    is_sea_view: Optional[bool] = Field(default=None)
+    selected_option_id: Optional[int] = Field(default=None)
+    asks_to_change: bool = Field(default=False)
 
 
 class TravelAgentService:
@@ -29,7 +43,6 @@ class TravelAgentService:
     def __init__(self, user=None):
         self.api_key = settings.OPENROUTER_API_KEY
         self.model = getattr(settings, "AI_MODEL", "arcee-ai/trinity-large-preview:free")
-        self.api_url = "https://openrouter.ai/api/v1/chat/completions"
         self.user = user
         
         self.legacy_status_mode = getattr(settings, "AI_LEGACY_STATUS_MODE", True)
@@ -394,141 +407,51 @@ class TravelAgentService:
             events = events.filter(price_per_person__lte=max_price)
         return EventSerializer(events, many=True).data
     
-    # ==================== Function Calling Definition ====================
-    
-    def get_tools_definition(self):
-        """تعريف الأدوات المتاحة للـ LLM"""
+    # ==================== LangChain Integration ====================
+
+    def _build_chat_model(self):
+        if not self.api_key:
+            raise ValueError("OPENROUTER_API_KEY is not configured.")
+        return ChatOpenAI(
+            model=self.model,
+            api_key=self.api_key,
+            base_url="https://openrouter.ai/api/v1",
+            temperature=0.2,
+            max_tokens=1500,
+        )
+
+    def get_langchain_tools(self):
         return [
-            {
-                "type": "function",
-                "function": {
-                    "name": "search_destinations_and_hotels",
-                    "description": "البحث عن وجهات سياحية وفنادق مناسبة حسب متطلبات المستخدم",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "budget": {
-                                "type": "number",
-                                "description": "الميزانية الكلية بالدولار"
-                            },
-                            "days": {
-                                "type": "integer",
-                                "description": "عدد أيام الرحلة"
-                            },
-                            "people": {
-                                "type": "integer",
-                                "description": "عدد الأشخاص"
-                            },
-                            "is_coastal": {
-                                "type": "boolean",
-                                "description": "هل الوجهة ساحلية؟ true للساحلية، false للجبلية"
-                            },
-                            "min_stars": {
-                                "type": "integer",
-                                "description": "الحد الأدنى لعدد نجوم الفندق (1-5)",
-                                "default": 3
-                            },
-                            "season": {
-                                "type": "string",
-                                "description": "الموسم المفضل (summer, winter, spring, autumn, all)",
-                                "enum": ["summer", "winter", "spring", "autumn", "all"]
-                            },
-                            "is_sea_view": {
-                                "type": "boolean",
-                                "description": "هل تريد فندقاً مطلاً على البحر؟"
-                            }
-                        },
-                        "required": []
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
-                    "name": "calculate_trip_cost_tool",
-                    "description": "حساب التكلفة الكلية لرحلة معينة اعتماداً على معطيات التكلفة",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "flight_cost": {
-                                "type": "number",
-                                "description": "تكلفة تذكرة الطيران الواحدة"
-                            },
-                            "daily_living_cost": {
-                                "type": "number",
-                                "description": "تكلفة المعيشة اليومية للشخص الواحد بدون الفندق"
-                            },
-                            "hotel_price": {
-                                "type": "number",
-                                "description": "سعر الليلة في الفندق"
-                            },
-                            "days": {
-                                "type": "integer",
-                                "description": "عدد أيام الرحلة"
-                            },
-                            "people": {
-                                "type": "integer",
-                                "description": "عدد الأشخاص"
-                            }
-                        },
-                        "required": ["flight_cost", "daily_living_cost", "hotel_price", "days", "people"]
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
-                    "name": "get_destination_details",
-                    "description": "الحصول على تفاصيل كاملة عن وجهة سياحية محددة",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "destination_id": {
-                                "type": "integer",
-                                "description": "معرف الوجهة"
-                            }
-                        },
-                        "required": ["destination_id"]
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
-                    "name": "get_hotel_details",
-                    "description": "الحصول على تفاصيل كاملة عن فندق محدد",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "hotel_id": {
-                                "type": "integer",
-                                "description": "معرف الفندق"
-                            }
-                        },
-                        "required": ["hotel_id"]
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
-                    "name": "search_events",
-                    "description": "البحث عن فعاليات موسمية في وجهة معينة",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "destination_id": {"type": "integer"},
-                            "season": {
-                                "type": "string",
-                                "enum": ["summer", "winter", "spring", "autumn", "all"]
-                            },
-                            "max_price": {"type": "number"}
-                        },
-                        "required": ["destination_id"]
-                    }
-                }
-            }
+            StructuredTool.from_function(
+                func=self.search_destinations_and_hotels,
+                name="search_destinations_and_hotels",
+                description="البحث عن وجهات سياحية وفنادق مناسبة حسب متطلبات المستخدم",
+            ),
+            StructuredTool.from_function(
+                func=self.calculate_trip_cost_tool,
+                name="calculate_trip_cost_tool",
+                description="حساب التكلفة الكلية لرحلة معينة اعتماداً على معطيات التكلفة",
+            ),
+            StructuredTool.from_function(
+                func=self.get_destination_details,
+                name="get_destination_details",
+                description="الحصول على تفاصيل كاملة عن وجهة سياحية محددة",
+            ),
+            StructuredTool.from_function(
+                func=self.get_hotel_details,
+                name="get_hotel_details",
+                description="الحصول على تفاصيل كاملة عن فندق محدد",
+            ),
+            StructuredTool.from_function(
+                func=self.search_events,
+                name="search_events",
+                description="البحث عن فعاليات موسمية في وجهة معينة",
+            ),
         ]
+
+    # Backward-compatible name to avoid touching the rest of the flow.
+    def get_tools_definition(self):
+        return self.get_langchain_tools()
     
     # ==================== State Management ====================
     
@@ -561,77 +484,211 @@ class TravelAgentService:
     
     def save_session_state(self, session, requirements, messages):
         """حفظ حالة المحادثة"""
+        previous = session.state if isinstance(session.state, dict) else {}
         session.state = {
             'requirements': requirements,
-            'messages': messages
+            'messages': messages,
+            'last_options': previous.get('last_options', []),
         }
         session.updated_at = timezone.now()
         session.save()
+
+    @staticmethod
+    def _required_keys():
+        return ["budget", "days", "people", "is_coastal", "min_stars"]
+
+    @staticmethod
+    def _missing_requirements(requirements):
+        return [k for k in TravelAgentService._required_keys() if requirements.get(k) is None]
+
+    @staticmethod
+    def _first_missing_question(missing):
+        mapping = {
+            "budget": "ما هي ميزانيتك الإجمالية بالدولار؟",
+            "days": "كم عدد أيام الرحلة؟",
+            "people": "كم عدد الأشخاص المسافرين؟",
+            "is_coastal": "هل تفضل وجهة ساحلية أم جبلية؟",
+            "min_stars": "ما الحد الأدنى لعدد نجوم الفندق (1 إلى 5)؟",
+        }
+        for key in TravelAgentService._required_keys():
+            if key in missing:
+                return mapping[key]
+        return "هل يمكن توضيح متطلبات الرحلة الأساسية؟"
+
+    @staticmethod
+    def _fallback_extract_signal(user_input):
+        text = (user_input or "").lower()
+        signal = {
+            "budget": None,
+            "days": None,
+            "people": None,
+            "is_coastal": None,
+            "min_stars": None,
+            "season": None,
+            "is_sea_view": None,
+            "selected_option_id": None,
+            "asks_to_change": False,
+        }
+
+        num_map = {"واحد": 1, "واحدة": 1, "اثنين": 2, "اثنان": 2, "ثلاثة": 3, "أربعة": 4, "خمسة": 5}
+
+        m = re.search(r"(budget|ميزاني[تة]|ميزانية)\D*(\d+(?:\.\d+)?)", text)
+        if m:
+            signal["budget"] = float(m.group(2))
+
+        m = re.search(r"(\d+)\s*(day|days|يوم|أيام)", text)
+        if m:
+            signal["days"] = int(m.group(1))
+
+        m = re.search(r"(\d+)\s*(person|people|شخص|أشخاص)", text)
+        if m:
+            signal["people"] = int(m.group(1))
+        elif "شخصان" in text:
+            signal["people"] = 2
+        elif "شخصين" in text:
+            signal["people"] = 2
+
+        m = re.search(r"(\d)\s*(star|نجوم|نجمة)", text)
+        if m:
+            signal["min_stars"] = int(m.group(1))
+        else:
+            for k, v in num_map.items():
+                if k in text and ("نجم" in text):
+                    signal["min_stars"] = v
+                    break
+
+        if any(tok in text for tok in ["coastal", "ساحل", "ساحلية", "بحر"]):
+            signal["is_coastal"] = True
+        if any(tok in text for tok in ["mountain", "جبل", "جبلية"]):
+            signal["is_coastal"] = False
+
+        for season in ("summer", "winter", "spring", "autumn"):
+            if season in text:
+                signal["season"] = season
+
+        if "sea view" in text or "مطل" in text:
+            signal["is_sea_view"] = True
+
+        m = re.search(r"(?:option|الخيار)\D*(\d+)", text)
+        if m:
+            signal["selected_option_id"] = int(m.group(1))
+
+        if any(tok in text for tok in ["غيّر", "تغيير", "change", "another", "غير مناسب", "مو مناسب"]):
+            signal["asks_to_change"] = True
+
+        return signal
+
+    def _extract_user_signal(self, user_input, requirements):
+        if not self.api_key:
+            return self._fallback_extract_signal(user_input)
+        try:
+            model = self._build_chat_model().with_structured_output(UserSignalSchema)
+            prompt = (
+                "استخرج فقط القيم الصريحة أو المستدل عليها بقوة من رسالة المستخدم.\n"
+                "لا تخترع أي قيمة.\n"
+                "selected_option_id يظهر فقط إذا اختار المستخدم رقماً.\n"
+                f"known_requirements={json.dumps(requirements, ensure_ascii=False)}\n"
+                f"user_message={user_input}"
+            )
+            parsed = model.invoke(prompt)
+            if hasattr(parsed, "model_dump"):
+                return parsed.model_dump()
+            return dict(parsed)
+        except Exception:
+            logger.exception("Structured extraction failed; using fallback parser")
+            return self._fallback_extract_signal(user_input)
+
+    @staticmethod
+    def _merge_requirements(requirements, signal):
+        merged = dict(requirements or {})
+        for key in ("budget", "days", "people", "is_coastal", "min_stars", "season", "is_sea_view"):
+            val = signal.get(key)
+            if val is not None:
+                merged[key] = val
+        if merged.get("min_stars") is not None:
+            try:
+                merged["min_stars"] = max(1, min(5, int(merged["min_stars"])))
+            except Exception:
+                merged["min_stars"] = 3
+        return merged
     
     # ==================== LLM Integration ====================
     
-    def call_llm(self, messages, tools=None, max_retries=3):
-        """
-        استدعاء LLM عبر OpenRouter API
-        
-        Args:
-            messages: قائمة الرسائل
-            tools: الأدوات المتاحة (اختياري)
-            max_retries: عدد المحاولات عند الفشل
-        
-        Returns:
-            رد LLM
-        """
-        headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json",
-            "HTTP-Referer": "http://localhost:8000",
-            "X-Title": "AI Travel Planner"
-        }
-        
-        payload = {
-            "model": self.model,
-            "messages": messages,
-            "temperature": 0.2,
-            "top_p": 0.95,
-            "max_tokens": 1500,
-        }
-        
-        # إضافة الأدوات إذا كانت متاحة
-        if tools:
-            payload["tools"] = tools
-            payload["tool_choice"] = "auto"
-        
-        for attempt in range(max_retries):
-            try:
-                response = requests.post(
-                    self.api_url,
-                    headers=headers,
-                    json=payload,
-                    timeout=30
-                )
-                
-                if response.status_code == 200:
-                    return response.json()
-                elif response.status_code == 429:  # Rate limit
-                    if attempt < max_retries - 1:
-                        import time
-                        time.sleep(2 ** attempt)  # Exponential backoff
-                        continue
+    @staticmethod
+    def _normalize_content(content):
+        if isinstance(content, str):
+            return content
+        if isinstance(content, list):
+            parts = []
+            for item in content:
+                if isinstance(item, dict) and item.get("type") == "text":
+                    parts.append(item.get("text", ""))
+                elif isinstance(item, str):
+                    parts.append(item)
+            return "".join(parts)
+        return str(content or "")
+
+    def _convert_to_langchain_messages(self, messages):
+        converted = []
+        for msg in messages or []:
+            role = msg.get("role")
+            content = self._normalize_content(msg.get("content", ""))
+            if role == "system":
+                converted.append(SystemMessage(content=content))
+            elif role == "user":
+                converted.append(HumanMessage(content=content))
+            elif role == "assistant":
+                tool_calls = msg.get("tool_calls")
+                if isinstance(tool_calls, list) and tool_calls:
+                    converted.append(AIMessage(content=content, tool_calls=tool_calls))
                 else:
-                    return {
-                        "error": f"API Error: {response.status_code}",
-                        "details": response.text
+                    converted.append(AIMessage(content=content))
+            elif role == "tool":
+                converted.append(
+                    ToolMessage(
+                        content=content,
+                        tool_call_id=msg.get("tool_call_id") or "tool-call",
+                    )
+                )
+        return converted
+
+    @staticmethod
+    def _convert_tool_calls_to_openai(tool_calls):
+        normalized = []
+        for call in tool_calls or []:
+            normalized.append(
+                {
+                    "id": call.get("id", ""),
+                    "type": "function",
+                    "function": {
+                        "name": call.get("name"),
+                        "arguments": json.dumps(call.get("args", {}), ensure_ascii=False),
+                    },
+                }
+            )
+        return normalized
+
+    def call_llm(self, messages, tools=None):
+        try:
+            model = self._build_chat_model()
+            if tools:
+                model = model.bind_tools(self.get_langchain_tools())
+
+            lc_messages = self._convert_to_langchain_messages(messages)
+            ai_msg = model.invoke(lc_messages)
+            return {
+                "choices": [
+                    {
+                        "message": {
+                            "content": self._normalize_content(ai_msg.content),
+                            "tool_calls": self._convert_tool_calls_to_openai(getattr(ai_msg, "tool_calls", None)),
+                        }
                     }
-                    
-            except requests.Timeout:
-                if attempt < max_retries - 1:
-                    continue
-                return {"error": "Request timeout"}
-            except Exception as e:
-                return {"error": str(e)}
-        
-        return {"error": "Max retries exceeded"}
+                ]
+            }
+        except Exception as exc:
+            logger.exception("LangChain invocation failed")
+            return {"error": str(exc)}
 
     @staticmethod
     def _extract_json_from_llm_text(text: str):
@@ -798,290 +855,138 @@ class TravelAgentService:
         Returns:
             رد منظم مع حالة المحادثة
         """
+        session = None
         try:
-            # الحصول على الجلسة أو إنشاء واحدة جديدة
             session = self.get_or_create_session(session_id)
-            
             if not session:
-                return {
-                    "status": "error",
-                    "message": "فشل في إنشاء جلسة المحادثة"
-                }
-            
-            # استرجاع الحالة السابقة
-            requirements = session.state.get('requirements', {}) or {}
-            messages = session.state.get('messages', []) or []
-            
-            # إضافة رسالة المستخدم
-            messages.append({
-                "role": "user",
-                "content": user_input
-            })
-            
-            # بناء رسائل LLM
-            requirements_context = json.dumps(requirements, ensure_ascii=False)
-            llm_messages = [
-                {"role": "system", "content": self.system_prompt},
-                {"role": "system", "content": f"collected_requirements (known so far) = {requirements_context}"},
-            ] + messages
-            
-            # استدعاء LLM مع الأدوات
-            tools = self.get_tools_definition()
-            llm_response = self.call_llm(llm_messages, tools)
-            
-            # معالجة الأخطاء
-            if "error" in llm_response:
-                return {
-                    "status": "error",
-                    "message": f"حدث خطأ في الاتصال بخدمة الذكاء الاصطناعي: {llm_response['error']}",
-                    "session_id": session.session_id
-                }
-            
-            # استخراج رد AI الأولي
-            choice = llm_response.get("choices", [{}])[0]
-            message = choice.get("message", {})
+                return {"status": "error", "message": "فشل في إنشاء جلسة المحادثة"}
 
-            def _extract_tool_calls_from_message(msg: dict):
-                """يستخرج tool_calls بصيغتين: الرسمي + نص <tool_call>..."""
-                extracted = msg.get("tool_calls", []) or []
+            state = session.state if isinstance(session.state, dict) else {}
+            requirements = state.get("requirements", {}) or {}
+            messages = state.get("messages", []) or []
+            last_options = state.get("last_options", []) or []
 
-                assistant_content_local = msg.get("content", "") or ""
-                if (not extracted
-                        and "<tool_call>" in assistant_content_local
-                        and "</tool_call>" in assistant_content_local):
-                    try:
-                        raw_tool_section_local = assistant_content_local.split("<tool_call>")[1].split("</tool_call>")[0].strip()
-                        logger.info("Inline tool_call detected")
+            messages.append({"role": "user", "content": user_input})
 
-                        def _coerce_arg_value(v: str):
-                            vv = (v or "").strip()
-                            low = vv.lower()
-                            if low == "true":
-                                return True
-                            if low == "false":
-                                return False
-                            try:
-                                if re.fullmatch(r"[-+]?\d+", vv):
-                                    return int(vv)
-                                if re.fullmatch(r"[-+]?\d*\.\d+", vv):
-                                    return float(vv)
-                            except Exception:
-                                pass
-                            return vv
+            signal = self._extract_user_signal(user_input, requirements)
+            requirements = self._merge_requirements(requirements, signal)
 
-                        parsed_name_local = None
-                        parsed_args_local = None
-
-                        # 1) JSON داخل <tool_call>
-                        if raw_tool_section_local.startswith("{"):
-                            parsed = json.loads(raw_tool_section_local)
-                            parsed_name_local = parsed.get("name")
-                            parsed_args_local = parsed.get("arguments", {})
-                            logger.info("Inline tool_call parsed as JSON: %s", parsed_name_local)
-
-                        # 2) صيغة XML-like
-                        if not parsed_name_local:
-                            lines_local = [ln.strip() for ln in raw_tool_section_local.splitlines() if ln.strip()]
-                            if lines_local:
-                                parsed_name_local = lines_local[0]
-                                parsed_args_local = {}
-                                logger.info("Inline tool_call parsed as XML-like: %s", parsed_name_local)
-
-                                pairs_local = re.findall(
-                                    r"<arg_key>\s*(.*?)\s*</\s*arg_key\s*>\s*<arg_value>\s*(.*?)\s*</\s*arg_value\s*>",
-                                    raw_tool_section_local,
-                                    flags=re.IGNORECASE | re.DOTALL,
-                                )
-                                for k, v in pairs_local:
-                                    parsed_args_local[k.strip()] = _coerce_arg_value(v)
-
-                                logger.info("Inline tool_call args keys: %s", list(parsed_args_local.keys()))
-
-                        if parsed_name_local and isinstance(parsed_args_local, dict):
-                            extracted = [{
-                                "id": "inline-tool-call",
-                                "type": "function",
-                                "function": {
-                                    "name": parsed_name_local,
-                                    "arguments": json.dumps(parsed_args_local, ensure_ascii=False),
-                                },
-                            }]
-                            msg["content"] = ""
-                        else:
-                            logger.warning(
-                                "Inline tool_call could not be parsed. raw_tool_section=%s",
-                                raw_tool_section_local,
-                            )
-                    except Exception:
-                        logger.exception("Inline tool_call parsing failed")
-                        extracted = []
-
-                return extracted
-
-            # تنفيذ الأدوات على شكل حلقات (حتى لو النموذج كرر <tool_call> بعد النتائج)
-            max_tool_rounds = 4
-            seen_tool_signatures = set()
-            for round_idx in range(max_tool_rounds):
-                tool_calls = _extract_tool_calls_from_message(message)
-                if not tool_calls:
-                    break
-
-                # Logging مختصر للرد الخام (لتشخيص مشاكل الإنتاج)
-                assistant_preview = (message.get("content", "") or "")[:600]
-                logger.info(
-                    "RAW_LLM_MESSAGE",
-                    extra={
-                        "round": round_idx,
-                        "has_tool_calls": True,
-                        "content_preview": assistant_preview,
-                        "tool_count": len(tool_calls),
-                    },
-                )
-
-                # حماية من التكرار (نفس الأدوات ونفس args)
-                try:
-                    signature = json.dumps(
-                        [
-                            {
-                                "name": tc.get("function", {}).get("name"),
-                                "arguments": tc.get("function", {}).get("arguments"),
-                            }
-                            for tc in tool_calls
-                        ],
-                        ensure_ascii=False,
-                        sort_keys=True,
-                    )
-                except Exception:
-                    signature = str([(tc.get("function", {}).get("name"), tc.get("function", {}).get("arguments")) for tc in tool_calls])
-
-                if signature in seen_tool_signatures:
-                    logger.warning("Tool loop repeating detected; stopping early")
-                    break
-                seen_tool_signatures.add(signature)
-
-                # خيار اختياري: رد 'searching' أولاً (يتطلب أن الواجهة تتصل مرة ثانية بنفس session)
-                if self.enable_searching_first_response and round_idx == 0:
-                    session.state = {
-                        'requirements': requirements,
-                        'messages': messages + [message],
-                        'pending_tool_calls': tool_calls,
+            # تأكيد خيار محدد من آخر خيارات معروضة فقط (grounding)
+            selected_option_id = signal.get("selected_option_id")
+            if selected_option_id is not None and last_options:
+                chosen = next((o for o in last_options if o.get("option_id") == selected_option_id), None)
+                if chosen:
+                    plan = {
+                        "option_id": chosen["option_id"],
+                        "destination_id": chosen["destination_id"],
+                        "hotel_id": chosen["hotel_id"],
+                        "total_cost": chosen.get("total_cost"),
+                        "days": int(requirements.get("days") or 0),
+                        "cost_breakdown": chosen.get("cost_breakdown"),
                     }
-                    session.updated_at = timezone.now()
-                    session.save()
-                    return {
-                        "status": "searching" if not self.legacy_status_mode else "missing_info",
-                        "message": "جاري البحث عن أفضل الخيارات المناسبة لك...",
+                    dest_id = chosen["destination_id"]
+                    season = requirements.get("season", "all")
+                    events = self.search_events(dest_id, season=season, max_price=None)
+                    if events:
+                        plan["events"] = [
+                            {
+                                "event_id": ev.get("id"),
+                                "name": ev.get("name"),
+                                "price_per_person": ev.get("price_per_person"),
+                            }
+                            for ev in events[:3]
+                        ]
+
+                    response = {
+                        "status": "plan_confirmed",
+                        "message": f"تم اعتماد الخيار رقم {selected_option_id}. إليك ملخص الرحلة النهائي.",
                         "collected_requirements": requirements,
+                        "selected_plan": plan,
                         "session_id": session.session_id,
                     }
+                    messages.append({"role": "assistant", "content": json.dumps(response, ensure_ascii=False)})
+                    session.state = {"requirements": requirements, "messages": messages, "last_options": last_options}
+                    session.updated_at = timezone.now()
+                    session.save()
+                    return response
 
-                logger.info("Executing %d tool_call(s)", len(tool_calls))
-                messages.append(message)
+                response = {
+                    "status": "gather_info",
+                    "message": "رقم الخيار غير موجود في الخيارات الحالية. اختر رقماً صحيحاً من الخيارات المعروضة.",
+                    "collected_requirements": requirements,
+                    "session_id": session.session_id,
+                }
+                messages.append({"role": "assistant", "content": json.dumps(response, ensure_ascii=False)})
+                session.state = {"requirements": requirements, "messages": messages, "last_options": last_options}
+                session.updated_at = timezone.now()
+                session.save()
+                return response if not self.legacy_status_mode else {**response, "status": "missing_info"}
 
-                for tool_call in tool_calls:
-                    function_name = tool_call["function"]["name"]
-                    function_args = json.loads(tool_call["function"]["arguments"])
+            missing = self._missing_requirements(requirements)
+            if missing:
+                response = {
+                    "status": "gather_info",
+                    "message": self._first_missing_question(missing),
+                    "collected_requirements": requirements,
+                    "session_id": session.session_id,
+                }
+                messages.append({"role": "assistant", "content": json.dumps(response, ensure_ascii=False)})
+                session.state = {"requirements": requirements, "messages": messages, "last_options": last_options}
+                session.updated_at = timezone.now()
+                session.save()
+                return response if not self.legacy_status_mode else {**response, "status": "missing_info"}
 
-                    tool_result = self.execute_tool_call(function_name, function_args)
-
-                    messages.append({
-                        "role": "tool",
-                        "tool_call_id": tool_call.get("id", ""),
-                        "name": function_name,
-                        "content": json.dumps(tool_result, ensure_ascii=False)
-                    })
-
-                llm_messages = [
-                    {"role": "system", "content": self.system_prompt},
-                    {"role": "system", "content": f"collected_requirements (known so far) = {json.dumps(requirements, ensure_ascii=False)}"},
-                ] + messages
-
-                # نعيد الاستدعاء مع tools لتفادي نماذج لا تلتزم وتعيد tool_call كنص
-                llm_response = self.call_llm(llm_messages, tools)
-
-                if "error" in llm_response:
-                    return {
-                        "status": "error",
-                        "message": f"حدث خطأ: {llm_response['error']}",
-                        "session_id": session.session_id
-                    }
-
-                choice = llm_response.get("choices", [{}])[0]
-                message = choice.get("message", {})
-            
-            # Logging مختصر للرد الخام النهائي
-            logger.info(
-                "RAW_LLM_FINAL_MESSAGE",
-                extra={
-                    "has_tool_calls": bool(message.get("tool_calls")),
-                    "content_preview": (message.get("content", "") or "")[:600],
-                },
+            options_raw = self.search_destinations_and_hotels(
+                budget=requirements.get("budget"),
+                days=requirements.get("days"),
+                people=requirements.get("people"),
+                is_coastal=requirements.get("is_coastal"),
+                min_stars=requirements.get("min_stars", 3),
+                season=requirements.get("season"),
+                is_sea_view=requirements.get("is_sea_view"),
             )
 
-            # إضافة رد AI للرسائل
-            assistant_message = message.get("content", "")
-            messages.append({
-                "role": "assistant",
-                "content": assistant_message
-            })
-
-            # محاولة تحليل الرد كـ JSON
-            try:
-                response_data = self._extract_json_from_llm_text(assistant_message)
-                if response_data is None:
-                    response_data = self._repair_json_via_llm(assistant_message)
-                if response_data is None:
-                    raise json.JSONDecodeError("Invalid JSON from LLM", assistant_message, 0)
-
-                # تحديث requirements من رد الـ LLM لمنع تكرار الأسئلة
-                if isinstance(response_data, dict):
-                    incoming = response_data.get("collected_requirements")
-                    if isinstance(incoming, dict):
-                        requirements.update({k: v for k, v in incoming.items() if v is not None})
-                        response_data["collected_requirements"] = requirements
-                    else:
-                        response_data["collected_requirements"] = requirements
-
-                    # توحيد أسماء الحالات (Backward compatibility مع الـ serializer الحالي)
-                    if self.legacy_status_mode:
-                        status_value = response_data.get("status")
-                        if status_value in ("gather_info", "clarify"):
-                            response_data["status"] = "missing_info"
-
-                # حفظ الحالة بعد تحديث requirements (لمنع تكرار الأسئلة)
-                self.save_session_state(session, requirements, messages)
-
-                response_data["session_id"] = session.session_id
-                
-                # إضافة البيانات المرئية إذا كانت الخطة مكتملة
-                if response_data.get("status") == "plan_confirmed":
-                    plan = response_data.get("selected_plan", {})
-                    dest_id = plan.get("destination_id")
-                    hotel_id = plan.get("hotel_id")
-                    
-                    if dest_id and hotel_id:
-                        dest_details = self.get_destination_details(dest_id)
-                        hotel_details = self.get_hotel_details(hotel_id)
-                        
-                        response_data["visual_data"] = {
-                            "destination": dest_details,
-                            "hotel": hotel_details
-                        }
-                
-                return response_data
-                
-            except json.JSONDecodeError:
-                # إذا لم يكن JSON، نرجع رد نصي
-                self.save_session_state(session, requirements, messages)
-                return {
-                    "status": "text_response",
-                    "message": assistant_message,
-                    "session_id": session.session_id
+            if not options_raw:
+                response = {
+                    "status": "no_options",
+                    "message": "لم أجد خيارات مناسبة بهذه المعايير. هل تفضّل زيادة الميزانية أو تقليل النجوم/الأيام؟",
+                    "collected_requirements": requirements,
+                    "session_id": session.session_id,
                 }
-            
+                messages.append({"role": "assistant", "content": json.dumps(response, ensure_ascii=False)})
+                session.state = {"requirements": requirements, "messages": messages, "last_options": []}
+                session.updated_at = timezone.now()
+                session.save()
+                return response
+
+            options = []
+            for idx, item in enumerate(options_raw[:3], start=1):
+                options.append(
+                    {
+                        "option_id": idx,
+                        "destination_id": item["destination_id"],
+                        "hotel_id": item["hotel_id"],
+                        "total_cost": item.get("total_cost"),
+                        "cost_breakdown": item.get("cost_breakdown"),
+                    }
+                )
+
+            response = {
+                "status": "options_presented",
+                "message": "وجدت أفضل الخيارات المناسبة لك. اختر رقم الخيار الذي تفضله.",
+                "collected_requirements": requirements,
+                "options": options,
+                "session_id": session.session_id,
+            }
+
+            messages.append({"role": "assistant", "content": json.dumps(response, ensure_ascii=False)})
+            session.state = {"requirements": requirements, "messages": messages, "last_options": options}
+            session.updated_at = timezone.now()
+            session.save()
+            return response
         except Exception as e:
             return {
                 "status": "error",
                 "message": f"حدث خطأ غير متوقع: {str(e)}",
-                "session_id": session.session_id if session else None
+                "session_id": session.session_id if session else None,
             }

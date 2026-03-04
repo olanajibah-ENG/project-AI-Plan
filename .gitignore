@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local envs and secrets
+.env
+Backend/trip_plan/.env
+Backend/.venv/
+
+# Local DB / media artifacts
+Backend/db.sqlite3
+Backend/media/
+
+# macOS
+.DS_Store

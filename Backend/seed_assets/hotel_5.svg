@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="seasideSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a9ebd" stop-opacity="0.7"/>
+      <stop offset="40%" stop-color="#8dc5d6"/>
+      <stop offset="70%" stop-color="#d4dfe8"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <linearGradient id="seasideOcean" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a8070"/>
+      <stop offset="50%" stop-color="#1a6b5a"/>
+      <stop offset="100%" stop-color="#0d5545"/>
+    </linearGradient>
+    <linearGradient id="boutiqueWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf5ed"/>
+      <stop offset="100%" stop-color="#e8ddd0"/>
+    </linearGradient>
+    <filter id="seaGlow">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#seasideSky)"/>
+
+  <!-- Clouds -->
+  <ellipse cx="300" cy="80" rx="180" ry="18" fill="#faf5ed" opacity="0.5"/>
+  <ellipse cx="320" cy="85" rx="140" ry="12" fill="#faf5ed" opacity="0.4"/>
+  <ellipse cx="900" cy="100" rx="200" ry="20" fill="#faf5ed" opacity="0.4"/>
+  <ellipse cx="920" cy="105" rx="150" ry="14" fill="#faf5ed" opacity="0.3"/>
+
+  <!-- Ocean -->
+  <path d="M0,380 L1280,380 L1280,720 L0,720 Z" fill="url(#seasideOcean)"/>
+
+  <!-- Wave lines -->
+  <g fill="none" stroke="#faf5ed" stroke-width="1" opacity="0.1">
+    <path d="M0,400 C100,394 200,406 300,398 C400,392 500,404 600,396 C700,390 800,402 900,394 C1000,388 1100,400 1280,394"/>
+    <path d="M0,430 C120,424 240,436 360,428 C480,420 600,434 720,426 C840,418 960,432 1080,424 L1280,428"/>
+    <path d="M0,460 C150,454 300,466 450,458 C600,450 750,464 900,456 C1050,448 1200,462 1280,458"/>
+    <path d="M0,495 C100,490 200,500 300,493 C400,487 500,498 600,492 C700,486 800,496 900,490 C1000,484 1100,494 1280,490"/>
+    <path d="M0,530 C130,525 260,535 390,528 C520,522 650,533 780,527 C910,521 1040,532 1280,526"/>
+    <path d="M0,570 C160,564 320,576 480,568 C640,560 800,572 960,566 C1120,560 1280,568 1280,568"/>
+  </g>
+
+  <!-- Cliff/terrace base -->
+  <path d="M300,380 L300,340 C320,330 380,320 500,315 C600,312 700,318 750,330 L750,380 Z" fill="#c96442" opacity="0.5"/>
+  <path d="M280,380 L280,350 C300,340 340,330 500,325 C620,322 720,328 770,340 L770,380 Z" fill="#d4a05a" opacity="0.3"/>
+
+  <!-- Boutique hotel building -->
+  <g>
+    <!-- Main building -->
+    <rect x="360" y="180" width="300" height="200" fill="url(#boutiqueWall)" rx="3"/>
+
+    <!-- Roof line -->
+    <rect x="350" y="172" width="320" height="12" fill="#c96442" opacity="0.5" rx="2"/>
+
+    <!-- Second floor windows -->
+    <rect x="385" y="200" width="45" height="55" fill="#5a9ebd" opacity="0.15" rx="2"/>
+    <rect x="385" y="200" width="45" height="55" fill="none" stroke="#d4c4b0" stroke-width="1.5" rx="2"/>
+    <line x1="407" y1="200" x2="407" y2="255" stroke="#d4c4b0" stroke-width="1"/>
+
+    <rect x="450" y="200" width="45" height="55" fill="#5a9ebd" opacity="0.15" rx="2"/>
+    <rect x="450" y="200" width="45" height="55" fill="none" stroke="#d4c4b0" stroke-width="1.5" rx="2"/>
+    <line x1="472" y1="200" x2="472" y2="255" stroke="#d4c4b0" stroke-width="1"/>
+
+    <rect x="520" y="200" width="45" height="55" fill="#5a9ebd" opacity="0.15" rx="2"/>
+    <rect x="520" y="200" width="45" height="55" fill="none" stroke="#d4c4b0" stroke-width="1.5" rx="2"/>
+    <line x1="542" y1="200" x2="542" y2="255" stroke="#d4c4b0" stroke-width="1"/>
+
+    <rect x="590" y="200" width="45" height="55" fill="#5a9ebd" opacity="0.15" rx="2"/>
+    <rect x="590" y="200" width="45" height="55" fill="none" stroke="#d4c4b0" stroke-width="1.5" rx="2"/>
+    <line x1="612" y1="200" x2="612" y2="255" stroke="#d4c4b0" stroke-width="1"/>
+
+    <!-- Ground floor -->
+    <rect x="385" y="290" width="45" height="60" fill="#2c1810" opacity="0.3" rx="2"/>
+    <path d="M385,310 Q407,295 430,310" fill="#2c1810" opacity="0.2"/>
+    <rect x="455" y="290" width="60" height="80" fill="#2c1810" opacity="0.4" rx="2"/>
+    <path d="M455,310 Q485,290 515,310" fill="#2c1810" opacity="0.3"/>
+    <rect x="540" y="290" width="45" height="60" fill="#2c1810" opacity="0.3" rx="2"/>
+    <path d="M540,310 Q562,295 585,310" fill="#2c1810" opacity="0.2"/>
+  </g>
+
+  <!-- Terrace with parasol -->
+  <g>
+    <!-- Terrace platform -->
+    <rect x="660" y="300" width="180" height="80" fill="#e8ddd0" opacity="0.6" rx="2"/>
+    <rect x="660" y="298" width="180" height="4" fill="#c96442" opacity="0.3"/>
+
+    <!-- Railing -->
+    <rect x="660" y="296" width="180" height="3" fill="#d4c4b0"/>
+    <g fill="#d4c4b0">
+      <rect x="670" y="296" width="2" height="15"/>
+      <rect x="690" y="296" width="2" height="15"/>
+      <rect x="710" y="296" width="2" height="15"/>
+      <rect x="730" y="296" width="2" height="15"/>
+      <rect x="750" y="296" width="2" height="15"/>
+      <rect x="770" y="296" width="2" height="15"/>
+      <rect x="790" y="296" width="2" height="15"/>
+      <rect x="810" y="296" width="2" height="15"/>
+      <rect x="830" y="296" width="2" height="15"/>
+    </g>
+
+    <!-- Parasol -->
+    <line x1="730" y1="240" x2="730" y2="310" stroke="#2c1810" stroke-width="3"/>
+    <path d="M685,240 Q730,210 775,240" fill="#c96442" opacity="0.6"/>
+    <path d="M685,240 Q730,215 775,240" fill="none" stroke="#c96442" stroke-width="1" opacity="0.4"/>
+
+    <!-- Small table and chairs suggestion -->
+    <ellipse cx="730" cy="325" rx="18" ry="8" fill="#2c1810" opacity="0.2"/>
+    <rect x="710" y="330" width="8" height="15" fill="#2c1810" opacity="0.15" rx="1"/>
+    <rect x="742" y="330" width="8" height="15" fill="#2c1810" opacity="0.15" rx="1"/>
+  </g>
+
+  <!-- Bougainvillea suggestion (climbing flowers) -->
+  <g>
+    <!-- Vine on left side of building -->
+    <path d="M370,200 C365,230 358,260 355,300 C352,330 360,350 365,370" fill="none" stroke="#1a6b5a" stroke-width="2" opacity="0.5"/>
+    <path d="M370,220 C360,218 350,225 345,235" fill="none" stroke="#1a6b5a" stroke-width="1.5" opacity="0.4"/>
+    <path d="M362,260 C352,258 345,265 340,275" fill="none" stroke="#1a6b5a" stroke-width="1.5" opacity="0.4"/>
+    <!-- Flower clusters (magenta/terracotta) -->
+    <g fill="#c96442" opacity="0.5">
+      <circle cx="355" cy="225" r="4"/>
+      <circle cx="348" cy="230" r="3.5"/>
+      <circle cx="360" cy="232" r="3"/>
+      <circle cx="345" cy="265" r="4"/>
+      <circle cx="340" cy="270" r="3.5"/>
+      <circle cx="350" cy="272" r="3"/>
+      <circle cx="355" cy="310" r="3.5"/>
+      <circle cx="348" cy="315" r="3"/>
+      <circle cx="360" cy="318" r="3"/>
+    </g>
+    <!-- More leaves -->
+    <g fill="#1a6b5a" opacity="0.25">
+      <ellipse cx="350" cy="240" rx="6" ry="3"/>
+      <ellipse cx="342" cy="280" rx="5" ry="3"/>
+      <ellipse cx="358" cy="300" rx="6" ry="3"/>
+      <ellipse cx="345" cy="335" rx="5" ry="3"/>
+    </g>
+  </g>
+
+  <!-- Steps down to water -->
+  <g fill="#d4c4b0" opacity="0.4">
+    <rect x="440" y="370" width="140" height="5"/>
+    <rect x="430" y="378" width="160" height="5"/>
+    <rect x="420" y="386" width="180" height="5"/>
+  </g>
+
+  <!-- Foreground rocks -->
+  <g fill="#c96442" opacity="0.3">
+    <ellipse cx="100" cy="650" rx="80" ry="30"/>
+    <ellipse cx="200" cy="680" rx="60" ry="25"/>
+    <ellipse cx="1100" cy="660" rx="70" ry="28"/>
+    <ellipse cx="1200" cy="690" rx="50" ry="20"/>
+  </g>
+
+  <!-- Birds -->
+  <g fill="none" stroke="#2c1810" stroke-width="1.2" opacity="0.25">
+    <path d="M800,120 Q805,114 810,120 Q815,114 820,120"/>
+    <path d="M840,105 Q844,100 848,105 Q852,100 856,105"/>
+    <path d="M780,140 Q784,135 788,140 Q792,135 796,140"/>
+  </g>
+
+  <rect width="1280" height="720" fill="#c96442" opacity="0.02"/>
+</svg>
