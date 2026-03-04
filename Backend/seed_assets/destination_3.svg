@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="desertSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.6"/>
+      <stop offset="30%" stop-color="#d4a040"/>
+      <stop offset="60%" stop-color="#e8c96a"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <linearGradient id="duneFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c96442" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#d4a05a" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="duneMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c96442" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#d4a05a"/>
+    </linearGradient>
+    <linearGradient id="duneNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c96442"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="oasisWater" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0.3"/>
+    </linearGradient>
+    <radialGradient id="heatHaze" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#faf5ed" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#faf5ed" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="haze">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#desertSky)"/>
+
+  <!-- Heat haze -->
+  <ellipse cx="640" cy="320" rx="600" ry="150" fill="url(#heatHaze)"/>
+
+  <!-- Distant mountains -->
+  <path d="M0,380 L120,330 L240,360 L400,300 L520,340 L640,310 L760,350 L880,290 L1000,330 L1120,310 L1280,350 L1280,420 L0,420 Z" fill="#2c1810" opacity="0.15"/>
+  <path d="M0,390 L150,345 L300,370 L450,320 L600,355 L750,335 L900,360 L1050,320 L1200,350 L1280,340 L1280,420 L0,420 Z" fill="#c96442" opacity="0.2"/>
+
+  <!-- Far dunes -->
+  <path d="M0,440 C200,400 400,430 600,410 C800,390 1000,420 1280,400 L1280,500 L0,500 Z" fill="url(#duneFar)"/>
+
+  <!-- Sand shimmer lines on far dunes -->
+  <path d="M100,430 C200,415 300,435 400,420" fill="none" stroke="#faf5ed" stroke-width="0.8" opacity="0.15"/>
+  <path d="M700,405 C800,395 900,415 1000,405" fill="none" stroke="#faf5ed" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- Mid dunes -->
+  <path d="M0,500 C150,460 300,490 500,470 C700,450 850,480 1050,460 C1180,448 1240,465 1280,458 L1280,580 L0,580 Z" fill="url(#duneMid)"/>
+
+  <!-- Dune shadow ridgelines -->
+  <path d="M0,502 C150,462 300,492 500,472 C700,452 850,482 1050,462" fill="none" stroke="#2c1810" stroke-width="1" opacity="0.1"/>
+
+  <!-- Sand ripple patterns on mid dunes -->
+  <g stroke="#c96442" stroke-width="0.6" fill="none" opacity="0.2">
+    <path d="M50,520 C80,515 110,525 140,518 C170,512 200,522 230,516"/>
+    <path d="M300,500 C330,495 360,505 390,498 C420,492 450,502 480,496"/>
+    <path d="M600,490 C630,484 660,494 690,488 C720,482 750,492 780,486"/>
+    <path d="M850,475 C880,470 910,480 940,474 C970,468 1000,478 1030,472"/>
+  </g>
+
+  <!-- Oasis area -->
+  <ellipse cx="750" cy="540" rx="100" ry="25" fill="url(#oasisWater)"/>
+  <ellipse cx="750" cy="535" rx="80" ry="8" fill="#1a6b5a" opacity="0.2"/>
+  <ellipse cx="720" cy="545" rx="15" ry="20" fill="#1a6b5a" opacity="0.15"/>
+  <ellipse cx="770" cy="548" rx="12" ry="18" fill="#1a6b5a" opacity="0.12"/>
+
+  <!-- Palm tree cluster -->
+  <g>
+    <path d="M700,540 C705,500 695,450 710,400" fill="none" stroke="#2c1810" stroke-width="6" stroke-linecap="round"/>
+    <path d="M710,400 C690,380 660,385 640,395" fill="none" stroke="#1a6b5a" stroke-width="3" opacity="0.8"/>
+    <path d="M710,400 C700,375 680,370 660,375" fill="none" stroke="#1a6b5a" stroke-width="2.5" opacity="0.7"/>
+    <path d="M710,400 C720,375 735,370 755,378" fill="none" stroke="#1a6b5a" stroke-width="3" opacity="0.8"/>
+    <path d="M710,400 C730,382 750,385 770,395" fill="none" stroke="#1a6b5a" stroke-width="2.5" opacity="0.7"/>
+    <path d="M710,400 C712,372 715,360 720,350" fill="none" stroke="#1a6b5a" stroke-width="2" opacity="0.6"/>
+
+    <path d="M760,542 C770,505 758,460 775,415" fill="none" stroke="#2c1810" stroke-width="5" stroke-linecap="round"/>
+    <path d="M775,415 C755,395 730,398 710,408" fill="none" stroke="#1a6b5a" stroke-width="2.5" opacity="0.75"/>
+    <path d="M775,415 C785,390 800,388 820,395" fill="none" stroke="#1a6b5a" stroke-width="2.5" opacity="0.75"/>
+    <path d="M775,415 C768,388 762,378 758,368" fill="none" stroke="#1a6b5a" stroke-width="2" opacity="0.6"/>
+    <path d="M775,415 C795,398 810,400 830,410" fill="none" stroke="#1a6b5a" stroke-width="2" opacity="0.65"/>
+
+    <path d="M730,543 C728,510 735,475 725,435" fill="none" stroke="#2c1810" stroke-width="4" stroke-linecap="round"/>
+    <path d="M725,435 C710,420 690,422 675,430" fill="none" stroke="#1a6b5a" stroke-width="2" opacity="0.7"/>
+    <path d="M725,435 C740,418 755,420 770,428" fill="none" stroke="#1a6b5a" stroke-width="2" opacity="0.7"/>
+    <path d="M725,435 C723,412 720,402 718,392" fill="none" stroke="#1a6b5a" stroke-width="1.5" opacity="0.55"/>
+  </g>
+
+  <!-- Near dunes -->
+  <path d="M0,580 C120,555 250,575 400,560 C550,545 680,570 850,555 C1000,540 1120,565 1280,548 L1280,720 L0,720 Z" fill="url(#duneNear)"/>
+
+  <!-- Sand ripple patterns on near dunes -->
+  <g stroke="#2c1810" stroke-width="0.5" fill="none" opacity="0.12">
+    <path d="M0,600 C30,596 60,604 90,598 C120,593 150,602 180,597 C210,592 240,600 270,595"/>
+    <path d="M300,590 C330,585 360,594 390,588 C420,582 450,592 480,586 C510,580 540,590 570,584"/>
+    <path d="M600,595 C630,590 660,598 690,592 C720,587 750,596 780,590"/>
+    <path d="M850,580 C880,575 910,584 940,578 C970,572 1000,582 1030,576 C1060,570 1090,580 1120,574"/>
+    <path d="M0,640 C40,635 80,644 120,638 C160,632 200,642 240,636"/>
+    <path d="M400,620 C430,615 460,624 490,618 C520,612 550,622 580,616"/>
+    <path d="M900,610 C930,605 960,614 990,608 C1020,602 1050,612 1080,606"/>
+  </g>
+
+  <!-- Foreground sand -->
+  <path d="M0,660 C160,650 320,665 480,655 C640,645 800,660 960,650 C1100,642 1200,658 1280,648 L1280,720 L0,720 Z" fill="#c96442" opacity="0.8"/>
+
+  <!-- Atmospheric warm overlay -->
+  <rect width="1280" height="720" fill="#b8860b" opacity="0.05"/>
+
+  <!-- Tiny distant birds -->
+  <g fill="none" stroke="#2c1810" stroke-width="1" opacity="0.25">
+    <path d="M400,200 Q404,195 408,200 Q412,195 416,200"/>
+    <path d="M430,185 Q433,181 436,185 Q439,181 442,185"/>
+    <path d="M380,210 Q383,206 386,210 Q389,206 392,210"/>
+  </g>
+</svg>

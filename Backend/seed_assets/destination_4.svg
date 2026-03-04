@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="medSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a9ebd"/>
+      <stop offset="40%" stop-color="#8dc5d6"/>
+      <stop offset="70%" stop-color="#c9dfe8"/>
+      <stop offset="100%" stop-color="#faf5ed"/>
+    </linearGradient>
+    <linearGradient id="medWater" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a"/>
+      <stop offset="50%" stop-color="#1a8070"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="hillside" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c96442" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#c96442" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="waterReflect">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1280" height="720" fill="url(#medSky)"/>
+
+  <!-- Wispy clouds -->
+  <ellipse cx="200" cy="80" rx="150" ry="20" fill="#faf5ed" opacity="0.5"/>
+  <ellipse cx="220" cy="85" rx="120" ry="15" fill="#faf5ed" opacity="0.4"/>
+  <ellipse cx="600" cy="120" rx="180" ry="18" fill="#faf5ed" opacity="0.35"/>
+  <ellipse cx="1000" cy="60" rx="140" ry="16" fill="#faf5ed" opacity="0.4"/>
+  <ellipse cx="1020" cy="65" rx="100" ry="12" fill="#faf5ed" opacity="0.3"/>
+
+  <!-- Distant headland left -->
+  <path d="M0,350 L30,320 L80,340 L120,300 L180,330 L220,310 L260,340 L260,420 L0,420 Z" fill="#1a6b5a" opacity="0.25"/>
+
+  <!-- Hillside with buildings -->
+  <path d="M700,420 L720,350 L780,320 L850,290 L920,270 L1000,260 L1080,270 L1140,290 L1200,320 L1280,350 L1280,500 L700,500 Z" fill="url(#hillside)"/>
+
+  <!-- White buildings with domes on hillside -->
+  <g>
+    <!-- Top row domes -->
+    <path d="M920,270 Q935,240 950,270" fill="#faf5ed"/>
+    <rect x="915" y="270" width="40" height="30" fill="#faf5ed"/>
+    <path d="M980,265 Q992,238 1004,265" fill="#faf5ed"/>
+    <rect x="976" y="265" width="32" height="25" fill="#faf5ed"/>
+    <rect x="1020" y="262" width="25" height="28" fill="#faf5ed"/>
+    <rect x="1018" y="258" width="29" height="6" fill="#c96442" opacity="0.7"/>
+  </g>
+
+  <!-- Row 2 buildings -->
+  <g>
+    <rect x="850" y="290" width="30" height="35" fill="#faf5ed"/>
+    <rect x="848" y="286" width="34" height="6" fill="#c96442" opacity="0.6"/>
+    <rect x="890" y="285" width="25" height="40" fill="#faf5ed"/>
+    <path d="M1040,278 Q1052,255 1064,278" fill="#faf5ed" opacity="0.9"/>
+    <rect x="1038" y="278" width="28" height="22" fill="#faf5ed" opacity="0.9"/>
+    <rect x="1075" y="275" width="35" height="30" fill="#faf5ed"/>
+    <rect x="1073" y="271" width="39" height="6" fill="#c96442" opacity="0.6"/>
+    <rect x="1120" y="282" width="28" height="28" fill="#faf5ed"/>
+  </g>
+
+  <!-- Row 3 buildings -->
+  <g>
+    <rect x="780" y="320" width="35" height="40" fill="#faf5ed"/>
+    <rect x="778" y="316" width="39" height="6" fill="#c96442" opacity="0.65"/>
+    <rect x="825" y="315" width="28" height="45" fill="#faf5ed"/>
+    <rect x="860" y="322" width="40" height="38" fill="#faf5ed"/>
+    <rect x="858" y="318" width="44" height="6" fill="#c96442" opacity="0.6"/>
+    <rect x="910" y="310" width="30" height="50" fill="#faf5ed"/>
+    <rect x="950" y="308" width="35" height="52" fill="#faf5ed"/>
+    <rect x="948" y="304" width="39" height="6" fill="#c96442" opacity="0.65"/>
+    <rect x="995" y="305" width="28" height="55" fill="#faf5ed"/>
+    <rect x="1035" y="300" width="32" height="60" fill="#faf5ed"/>
+    <rect x="1033" y="296" width="36" height="6" fill="#c96442" opacity="0.6"/>
+    <rect x="1080" y="305" width="38" height="55" fill="#faf5ed"/>
+    <rect x="1130" y="310" width="30" height="50" fill="#faf5ed"/>
+    <rect x="1128" y="306" width="34" height="6" fill="#c96442" opacity="0.65"/>
+    <rect x="1170" y="318" width="40" height="42" fill="#faf5ed"/>
+    <rect x="1220" y="325" width="30" height="35" fill="#faf5ed"/>
+    <rect x="1218" y="321" width="34" height="6" fill="#c96442" opacity="0.6"/>
+  </g>
+
+  <!-- Waterfront row -->
+  <g>
+    <rect x="720" y="360" width="40" height="50" fill="#faf5ed"/>
+    <rect x="718" y="356" width="44" height="6" fill="#c96442" opacity="0.7"/>
+    <rect x="770" y="355" width="35" height="55" fill="#faf5ed"/>
+    <rect x="815" y="350" width="45" height="60" fill="#faf5ed"/>
+    <rect x="813" y="346" width="49" height="6" fill="#c96442" opacity="0.7"/>
+    <rect x="870" y="355" width="30" height="55" fill="#faf5ed"/>
+    <rect x="910" y="348" width="40" height="62" fill="#faf5ed"/>
+    <rect x="960" y="352" width="35" height="58" fill="#faf5ed"/>
+    <rect x="958" y="348" width="39" height="6" fill="#c96442" opacity="0.7"/>
+    <rect x="1005" y="350" width="42" height="60" fill="#faf5ed"/>
+    <rect x="1055" y="355" width="30" height="55" fill="#faf5ed"/>
+    <rect x="1095" y="348" width="38" height="62" fill="#faf5ed"/>
+    <rect x="1093" y="344" width="42" height="6" fill="#c96442" opacity="0.7"/>
+    <rect x="1145" y="352" width="35" height="58" fill="#faf5ed"/>
+    <rect x="1190" y="358" width="40" height="52" fill="#faf5ed"/>
+    <rect x="1240" y="362" width="40" height="48" fill="#faf5ed"/>
+    <rect x="1238" y="358" width="44" height="6" fill="#c96442" opacity="0.7"/>
+  </g>
+
+  <!-- Window details -->
+  <g fill="#1a6b5a" opacity="0.2">
+    <circle cx="795" cy="335" r="2"/><circle cx="805" cy="335" r="2"/>
+    <circle cx="795" cy="345" r="2"/><circle cx="805" cy="345" r="2"/>
+    <circle cx="875" cy="332" r="2"/><circle cx="885" cy="332" r="2"/>
+    <circle cx="965" cy="320" r="2"/><circle cx="975" cy="320" r="2"/>
+    <circle cx="1050" cy="315" r="2"/><circle cx="1060" cy="315" r="2"/>
+  </g>
+
+  <!-- Harbor quay -->
+  <rect x="700" y="410" width="580" height="8" fill="#c96442" opacity="0.6"/>
+
+  <!-- Water -->
+  <path d="M0,420 L1280,420 L1280,720 L0,720 Z" fill="url(#medWater)"/>
+
+  <!-- Water reflection -->
+  <g opacity="0.12" filter="url(#waterReflect)">
+    <rect x="850" y="425" width="400" height="60" fill="#faf5ed"/>
+  </g>
+
+  <!-- Water wave lines -->
+  <g fill="none" stroke="#faf5ed" stroke-width="1" opacity="0.1">
+    <path d="M0,450 C100,445 200,455 300,448 C400,442 500,452 600,446 C700,440 800,450 900,444 C1000,438 1100,448 1200,442 L1280,445"/>
+    <path d="M0,480 C120,474 240,486 360,478 C480,470 600,482 720,476 C840,470 960,482 1080,474 L1280,478"/>
+    <path d="M0,510 C150,504 300,516 450,508 C600,500 750,512 900,504 C1050,498 1200,510 1280,505"/>
+    <path d="M0,545 C100,540 200,550 300,543 C400,537 500,547 600,541 C700,535 800,545 900,539 C1000,533 1100,543 1280,538"/>
+    <path d="M0,580 C130,575 260,585 390,578 C520,572 650,582 780,576 C910,570 1040,580 1280,574"/>
+    <path d="M0,620 C160,614 320,626 480,618 C640,610 800,622 960,616 C1120,610 1280,618 1280,618"/>
+  </g>
+
+  <!-- Small boats -->
+  <g>
+    <path d="M300,460 Q310,472 320,468 Q330,464 340,472 Q350,464 360,460 L355,455 L305,455 Z" fill="#2c1810" opacity="0.5"/>
+    <line x1="330" y1="455" x2="330" y2="435" stroke="#2c1810" stroke-width="1.5" opacity="0.5"/>
+    <path d="M330,435 L330,448 L345,448 Z" fill="#faf5ed" opacity="0.4"/>
+
+    <path d="M500,480 Q508,490 516,487 Q524,484 532,490 Q540,484 548,480 L544,476 L504,476 Z" fill="#c96442" opacity="0.4"/>
+    <line x1="524" y1="476" x2="524" y2="458" stroke="#2c1810" stroke-width="1.2" opacity="0.4"/>
+    <path d="M524,458 L524,470 L536,470 Z" fill="#faf5ed" opacity="0.3"/>
+
+    <path d="M150,500 Q157,510 164,507 Q171,504 178,510 Q185,504 192,500 L188,496 L154,496 Z" fill="#2c1810" opacity="0.35"/>
+    <line x1="171" y1="496" x2="171" y2="480" stroke="#2c1810" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- Birds -->
+  <g fill="none" stroke="#2c1810" stroke-width="1.2" opacity="0.25">
+    <path d="M400,150 Q405,144 410,150 Q415,144 420,150"/>
+    <path d="M440,135 Q444,130 448,135 Q452,130 456,135"/>
+    <path d="M380,165 Q384,160 388,165 Q392,160 396,165"/>
+  </g>
+
+  <!-- Warm atmosphere -->
+  <rect width="1280" height="720" fill="#c96442" opacity="0.03"/>
+</svg>

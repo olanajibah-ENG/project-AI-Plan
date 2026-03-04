@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="winterNight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1a2a"/>
+      <stop offset="40%" stop-color="#1a3050"/>
+      <stop offset="70%" stop-color="#1a6b5a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2c1810" stop-opacity="0.5"/>
+    </linearGradient>
+    <radialGradient id="stallWarmth" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#b8860b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="winterGlow">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="lightGlow">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <filter id="snowFall">
+      <feGaussianBlur stdDeviation="1"/>
+    </filter>
+  </defs>
+
+  <!-- Night sky -->
+  <rect width="1280" height="720" fill="url(#winterNight)"/>
+
+  <!-- Crescent moon -->
+  <g>
+    <circle cx="1050" cy="80" r="30" fill="#faf5ed" opacity="0.8"/>
+    <circle cx="1065" cy="72" r="26" fill="#0d1a2a"/>
+    <!-- Moon glow -->
+    <circle cx="1050" cy="80" r="50" fill="#faf5ed" opacity="0.05" filter="url(#winterGlow)"/>
+  </g>
+
+  <!-- Stars -->
+  <g fill="#faf5ed">
+    <circle cx="80" cy="50" r="1.5" opacity="0.6"/>
+    <circle cx="200" cy="30" r="1" opacity="0.4"/>
+    <circle cx="320" cy="60" r="1.5" opacity="0.5"/>
+    <circle cx="450" cy="25" r="1" opacity="0.4"/>
+    <circle cx="580" cy="45" r="2" opacity="0.7"/>
+    <circle cx="700" cy="35" r="1" opacity="0.4"/>
+    <circle cx="820" cy="55" r="1.5" opacity="0.5"/>
+    <circle cx="900" cy="20" r="1" opacity="0.4"/>
+    <circle cx="1150" cy="40" r="1.5" opacity="0.5"/>
+    <circle cx="1230" cy="60" r="1" opacity="0.4"/>
+    <circle cx="150" cy="100" r="1" opacity="0.3"/>
+    <circle cx="400" cy="90" r="1" opacity="0.3"/>
+    <circle cx="650" cy="85" r="1" opacity="0.25"/>
+    <circle cx="950" cy="95" r="1" opacity="0.3"/>
+  </g>
+
+  <!-- Background building silhouettes -->
+  <g fill="#0d1a2a" opacity="0.5">
+    <rect x="0" y="240" width="120" height="480"/>
+    <rect x="130" y="220" width="90" height="500"/>
+    <rect x="230" y="260" width="80" height="460"/>
+    <rect x="970" y="230" width="100" height="490"/>
+    <rect x="1080" y="250" width="80" height="470"/>
+    <rect x="1170" y="220" width="110" height="500"/>
+    <!-- Building windows (few lit) -->
+    <rect x="40" y="280" width="12" height="16" fill="#b8860b" opacity="0.15"/>
+    <rect x="70" y="320" width="12" height="16" fill="#b8860b" opacity="0.1"/>
+    <rect x="155" y="260" width="12" height="16" fill="#b8860b" opacity="0.12"/>
+    <rect x="1005" y="270" width="12" height="16" fill="#b8860b" opacity="0.15"/>
+    <rect x="1035" y="310" width="12" height="16" fill="#b8860b" opacity="0.1"/>
+    <rect x="1200" y="260" width="12" height="16" fill="#b8860b" opacity="0.12"/>
+  </g>
+
+  <!-- String lights across the market -->
+  <g>
+    <!-- String 1 -->
+    <path d="M100,260 Q400,300 700,280 Q1000,260 1200,290" fill="none" stroke="#2c1810" stroke-width="0.8" opacity="0.4"/>
+    <g fill="#b8860b" opacity="0.7">
+      <circle cx="180" cy="272" r="3"/>
+      <circle cx="280" cy="284" r="3"/>
+      <circle cx="380" cy="292" r="3"/>
+      <circle cx="480" cy="290" r="3"/>
+      <circle cx="580" cy="284" r="3"/>
+      <circle cx="680" cy="280" r="3"/>
+      <circle cx="780" cy="274" r="3"/>
+      <circle cx="880" cy="268" r="3"/>
+      <circle cx="980" cy="270" r="3"/>
+      <circle cx="1080" cy="278" r="3"/>
+    </g>
+    <!-- Light glows -->
+    <g fill="#b8860b" opacity="0.06" filter="url(#lightGlow)">
+      <circle cx="180" cy="272" r="15"/>
+      <circle cx="380" cy="292" r="15"/>
+      <circle cx="580" cy="284" r="15"/>
+      <circle cx="780" cy="274" r="15"/>
+      <circle cx="980" cy="270" r="15"/>
+    </g>
+
+    <!-- String 2 -->
+    <path d="M150,320 Q450,350 750,330 Q1050,310 1180,340" fill="none" stroke="#2c1810" stroke-width="0.8" opacity="0.35"/>
+    <g fill="#c96442" opacity="0.6">
+      <circle cx="240" cy="330" r="2.5"/>
+      <circle cx="340" cy="342" r="2.5"/>
+      <circle cx="440" cy="348" r="2.5"/>
+      <circle cx="540" cy="344" r="2.5"/>
+      <circle cx="640" cy="336" r="2.5"/>
+      <circle cx="740" cy="330" r="2.5"/>
+      <circle cx="840" cy="322" r="2.5"/>
+      <circle cx="940" cy="318" r="2.5"/>
+      <circle cx="1040" cy="322" r="2.5"/>
+      <circle cx="1140" cy="334" r="2.5"/>
+    </g>
+    <g fill="#c96442" opacity="0.04" filter="url(#lightGlow)">
+      <circle cx="240" cy="330" r="12"/>
+      <circle cx="440" cy="348" r="12"/>
+      <circle cx="640" cy="336" r="12"/>
+      <circle cx="840" cy="322" r="12"/>
+      <circle cx="1040" cy="322" r="12"/>
+    </g>
+  </g>
+
+  <!-- Market stalls -->
+  <!-- Stall 1 -->
+  <g>
+    <rect x="150" y="380" width="160" height="160" fill="#2c1810" opacity="0.6"/>
+    <path d="M140,380 L230,350 L320,380 Z" fill="#c96442" opacity="0.5"/>
+    <rect x="160" y="420" width="140" height="8" fill="#d4a05a" opacity="0.3"/>
+    <!-- Warm glow from stall -->
+    <ellipse cx="230" cy="430" rx="80" ry="60" fill="url(#stallWarmth)" filter="url(#winterGlow)"/>
+    <!-- Items -->
+    <g fill="#b8860b" opacity="0.2">
+      <circle cx="185" cy="415" r="6"/>
+      <circle cx="210" cy="414" r="5"/>
+      <circle cx="235" cy="415" r="6"/>
+      <circle cx="260" cy="414" r="5"/>
+      <circle cx="285" cy="415" r="6"/>
+    </g>
+  </g>
+
+  <!-- Stall 2 -->
+  <g>
+    <rect x="360" y="370" width="180" height="170" fill="#2c1810" opacity="0.65"/>
+    <path d="M350,370 L450,335 L560,370 Z" fill="#1a6b5a" opacity="0.45"/>
+    <rect x="370" y="410" width="160" height="8" fill="#d4a05a" opacity="0.3"/>
+    <ellipse cx="450" cy="420" rx="90" ry="65" fill="url(#stallWarmth)" filter="url(#winterGlow)"/>
+    <g fill="#c96442" opacity="0.2">
+      <rect x="385" y="395" width="14" height="18" rx="2"/>
+      <rect x="410" y="397" width="12" height="16" rx="2"/>
+      <rect x="435" y="395" width="14" height="18" rx="2"/>
+      <rect x="460" y="397" width="12" height="16" rx="2"/>
+      <rect x="485" y="395" width="14" height="18" rx="2"/>
+      <rect x="510" y="397" width="12" height="16" rx="2"/>
+    </g>
+  </g>
+
+  <!-- Stall 3 (central, largest) -->
+  <g>
+    <rect x="580" y="350" width="200" height="190" fill="#2c1810" opacity="0.7"/>
+    <path d="M570,350 L680,310 L790,350 Z" fill="#b8860b" opacity="0.4"/>
+    <rect x="590" y="400" width="180" height="10" fill="#d4a05a" opacity="0.35"/>
+    <ellipse cx="680" cy="410" rx="100" ry="70" fill="url(#stallWarmth)" filter="url(#winterGlow)"/>
+    <g fill="#b8860b" opacity="0.25">
+      <circle cx="620" cy="392" r="8"/>
+      <circle cx="650" cy="390" r="7"/>
+      <circle cx="680" cy="392" r="8"/>
+      <circle cx="710" cy="390" r="7"/>
+      <circle cx="740" cy="392" r="8"/>
+    </g>
+  </g>
+
+  <!-- Stall 4 -->
+  <g>
+    <rect x="820" y="370" width="180" height="170" fill="#2c1810" opacity="0.65"/>
+    <path d="M810,370 L910,335 L1010,370 Z" fill="#c96442" opacity="0.45"/>
+    <rect x="830" y="410" width="160" height="8" fill="#d4a05a" opacity="0.3"/>
+    <ellipse cx="910" cy="420" rx="90" ry="65" fill="url(#stallWarmth)" filter="url(#winterGlow)"/>
+  </g>
+
+  <!-- Stall 5 -->
+  <g>
+    <rect x="1040" y="380" width="160" height="160" fill="#2c1810" opacity="0.6"/>
+    <path d="M1030,380 L1120,350 L1210,380 Z" fill="#1a6b5a" opacity="0.4"/>
+    <rect x="1050" y="420" width="140" height="8" fill="#d4a05a" opacity="0.3"/>
+    <ellipse cx="1120" cy="430" rx="80" ry="60" fill="url(#stallWarmth)" filter="url(#winterGlow)"/>
+  </g>
+
+  <!-- Ground -->
+  <rect x="0" y="540" width="1280" height="180" fill="#2c1810" opacity="0.4"/>
+
+  <!-- Visitor silhouettes -->
+  <g fill="#0d1a2a" opacity="0.4">
+    <circle cx="300" cy="530" r="8"/><path d="M292,538 L290,580 L310,580 L308,538 Z"/>
+    <circle cx="500" cy="525" r="9"/><path d="M491,534 L488,580 L512,580 L509,534 Z"/>
+    <circle cx="530" cy="528" r="7"/><path d="M523,535 L521,575 L539,575 L537,535 Z"/>
+    <circle cx="750" cy="530" r="8"/><path d="M742,538 L740,580 L760,580 L758,538 Z"/>
+    <circle cx="780" cy="527" r="8"/><path d="M772,535 L770,578 L790,578 L788,535 Z"/>
+    <circle cx="1000" cy="530" r="9"/><path d="M991,539 L988,582 L1012,582 L1009,539 Z"/>
+  </g>
+
+  <!-- Snowflakes -->
+  <g fill="#faf5ed" filter="url(#snowFall)">
+    <circle cx="50" cy="150" r="2" opacity="0.4"/>
+    <circle cx="150" cy="200" r="1.5" opacity="0.3"/>
+    <circle cx="250" cy="120" r="2" opacity="0.35"/>
+    <circle cx="350" cy="180" r="1.5" opacity="0.3"/>
+    <circle cx="450" cy="140" r="2" opacity="0.4"/>
+    <circle cx="550" cy="190" r="1.5" opacity="0.3"/>
+    <circle cx="650" cy="130" r="2" opacity="0.35"/>
+    <circle cx="750" cy="170" r="1.5" opacity="0.3"/>
+    <circle cx="850" cy="150" r="2" opacity="0.4"/>
+    <circle cx="950" cy="200" r="1.5" opacity="0.3"/>
+    <circle cx="1050" cy="160" r="2" opacity="0.35"/>
+    <circle cx="1150" cy="180" r="1.5" opacity="0.3"/>
+    <circle cx="100" cy="350" r="1.5" opacity="0.25"/>
+    <circle cx="300" cy="320" r="2" opacity="0.3"/>
+    <circle cx="500" cy="300" r="1.5" opacity="0.25"/>
+    <circle cx="700" cy="340" r="2" opacity="0.3"/>
+    <circle cx="900" cy="310" r="1.5" opacity="0.25"/>
+    <circle cx="1100" cy="330" r="2" opacity="0.3"/>
+    <circle cx="200" cy="480" r="1.5" opacity="0.2"/>
+    <circle cx="600" cy="470" r="2" opacity="0.25"/>
+    <circle cx="1000" cy="460" r="1.5" opacity="0.2"/>
+  </g>
+
+  <!-- Overall warm market glow -->
+  <ellipse cx="640" cy="420" rx="500" ry="150" fill="#b8860b" opacity="0.03" filter="url(#winterGlow)"/>
+</svg>

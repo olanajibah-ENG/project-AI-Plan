@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: ola_backend
+    env_file:
+      - ./Backend/trip_plan/.env
+    environment:
+      DB_ENGINE: sqlite
+      DB_SQLITE_PATH: /data/db.sqlite3
+      ALLOWED_HOSTS: "*"
+      AUTO_SEED: "true"
+    volumes:
+      - backend_data:/data
+      - backend_media:/app/media
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: ola_frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  backend_data:
+  backend_media:

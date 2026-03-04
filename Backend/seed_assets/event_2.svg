@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1520"/>
+      <stop offset="40%" stop-color="#1a2840"/>
+      <stop offset="70%" stop-color="#1a6b5a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2c1810" stop-opacity="0.8"/>
+    </linearGradient>
+    <radialGradient id="spotGlow" cx="0.5" cy="0" r="0.8">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.8"/>
+      <stop offset="30%" stop-color="#b8860b" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stageLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="concertGlow">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="spotBlur">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <!-- Night sky -->
+  <rect width="1280" height="720" fill="url(#nightSky)"/>
+
+  <!-- Stars -->
+  <g fill="#faf5ed">
+    <circle cx="100" cy="40" r="1.5" opacity="0.7"/>
+    <circle cx="200" cy="80" r="1" opacity="0.5"/>
+    <circle cx="350" cy="30" r="1.5" opacity="0.6"/>
+    <circle cx="450" cy="60" r="1" opacity="0.4"/>
+    <circle cx="550" cy="20" r="2" opacity="0.8"/>
+    <circle cx="650" cy="50" r="1" opacity="0.5"/>
+    <circle cx="750" cy="25" r="1.5" opacity="0.6"/>
+    <circle cx="850" cy="70" r="1" opacity="0.4"/>
+    <circle cx="950" cy="35" r="1.5" opacity="0.7"/>
+    <circle cx="1050" cy="55" r="1" opacity="0.5"/>
+    <circle cx="1150" cy="30" r="2" opacity="0.7"/>
+    <circle cx="1250" cy="65" r="1" opacity="0.4"/>
+    <circle cx="150" cy="110" r="1" opacity="0.3"/>
+    <circle cx="300" cy="95" r="1.5" opacity="0.5"/>
+    <circle cx="500" cy="100" r="1" opacity="0.3"/>
+    <circle cx="700" cy="90" r="1" opacity="0.4"/>
+    <circle cx="900" cy="105" r="1.5" opacity="0.5"/>
+    <circle cx="1100" cy="95" r="1" opacity="0.3"/>
+    <circle cx="80" cy="150" r="1" opacity="0.2"/>
+    <circle cx="400" cy="140" r="1" opacity="0.25"/>
+    <circle cx="800" cy="130" r="1" opacity="0.2"/>
+    <circle cx="1200" cy="140" r="1" opacity="0.25"/>
+  </g>
+  <!-- Brighter stars with glow -->
+  <g filter="url(#starGlow)">
+    <circle cx="550" cy="20" r="2" fill="#faf5ed" opacity="0.5"/>
+    <circle cx="1150" cy="30" r="2" fill="#faf5ed" opacity="0.4"/>
+    <circle cx="100" cy="40" r="1.5" fill="#faf5ed" opacity="0.4"/>
+  </g>
+
+  <!-- Stage structure -->
+  <rect x="300" y="300" width="680" height="250" fill="#2c1810" opacity="0.8" rx="4"/>
+  <rect x="280" y="290" width="720" height="14" fill="#2c1810" rx="2"/>
+
+  <!-- Stage floor -->
+  <rect x="320" y="430" width="640" height="120" fill="#c96442" opacity="0.15"/>
+
+  <!-- Stage back wall -->
+  <rect x="320" y="310" width="640" height="120" fill="#1a6b5a" opacity="0.1"/>
+
+  <!-- Spotlight beams from above -->
+  <g>
+    <!-- Beam 1 - left -->
+    <polygon points="400,0 340,300 460,300" fill="#b8860b" opacity="0.06"/>
+    <polygon points="400,0 360,300 440,300" fill="#b8860b" opacity="0.04"/>
+
+    <!-- Beam 2 - center-left -->
+    <polygon points="550,0 480,300 620,300" fill="#b8860b" opacity="0.07"/>
+    <polygon points="550,0 500,300 600,300" fill="#b8860b" opacity="0.05"/>
+
+    <!-- Beam 3 - center -->
+    <polygon points="640,0 560,300 720,300" fill="#b8860b" opacity="0.08"/>
+    <polygon points="640,0 590,300 690,300" fill="#faf5ed" opacity="0.03"/>
+
+    <!-- Beam 4 - center-right -->
+    <polygon points="730,0 660,300 800,300" fill="#b8860b" opacity="0.07"/>
+    <polygon points="730,0 680,300 780,300" fill="#b8860b" opacity="0.05"/>
+
+    <!-- Beam 5 - right -->
+    <polygon points="880,0 820,300 940,300" fill="#b8860b" opacity="0.06"/>
+    <polygon points="880,0 840,300 920,300" fill="#b8860b" opacity="0.04"/>
+  </g>
+
+  <!-- Stage glow -->
+  <ellipse cx="640" cy="380" rx="350" ry="80" fill="#b8860b" opacity="0.1" filter="url(#concertGlow)"/>
+  <ellipse cx="640" cy="350" rx="200" ry="50" fill="#faf5ed" opacity="0.03" filter="url(#concertGlow)"/>
+
+  <!-- Stage equipment silhouettes -->
+  <g fill="#2c1810" opacity="0.6">
+    <!-- Speaker stacks left -->
+    <rect x="320" y="340" width="50" height="90" rx="3"/>
+    <rect x="325" y="345" width="40" height="25" rx="2" fill="#2c1810" opacity="0.3"/>
+    <rect x="325" y="380" width="40" height="40" rx="2" fill="#2c1810" opacity="0.3"/>
+    <!-- Speaker stacks right -->
+    <rect x="910" y="340" width="50" height="90" rx="3"/>
+    <rect x="915" y="345" width="40" height="25" rx="2" fill="#2c1810" opacity="0.3"/>
+    <rect x="915" y="380" width="40" height="40" rx="2" fill="#2c1810" opacity="0.3"/>
+  </g>
+
+  <!-- Performer silhouettes on stage -->
+  <g fill="#2c1810" opacity="0.5">
+    <!-- Center performer -->
+    <circle cx="640" cy="380" r="12"/>
+    <path d="M628,392 L622,460 L632,460 L636,430 L640,460 L644,430 L648,460 L658,460 L652,392 Z"/>
+    <!-- Mic stand -->
+    <line x1="640" y1="395" x2="640" y2="440" stroke="#2c1810" stroke-width="2" opacity="0.4"/>
+    <circle cx="640" cy="395" r="4" fill="#2c1810" opacity="0.3"/>
+
+    <!-- Left performer -->
+    <circle cx="500" cy="395" r="10"/>
+    <path d="M490,405 L486,460 L494,460 L497,435 L500,460 L503,435 L506,460 L514,460 L510,405 Z"/>
+
+    <!-- Right performer -->
+    <circle cx="780" cy="395" r="10"/>
+    <path d="M770,405 L766,460 L774,460 L777,435 L780,460 L783,435 L786,460 L794,460 L790,405 Z"/>
+  </g>
+
+  <!-- Crowd silhouettes -->
+  <g fill="#2c1810">
+    <!-- Back row -->
+    <g opacity="0.6">
+      <circle cx="200" cy="530" r="10"/>
+      <circle cx="230" cy="525" r="10"/>
+      <circle cx="260" cy="532" r="10"/>
+      <circle cx="290" cy="527" r="10"/>
+      <circle cx="320" cy="530" r="10"/>
+      <circle cx="350" cy="524" r="10"/>
+      <circle cx="380" cy="528" r="10"/>
+      <circle cx="410" cy="532" r="10"/>
+      <circle cx="440" cy="526" r="10"/>
+      <circle cx="470" cy="530" r="10"/>
+      <circle cx="500" cy="525" r="10"/>
+      <circle cx="530" cy="528" r="10"/>
+      <circle cx="560" cy="532" r="10"/>
+      <circle cx="590" cy="526" r="10"/>
+      <circle cx="620" cy="530" r="10"/>
+      <circle cx="650" cy="525" r="10"/>
+      <circle cx="680" cy="528" r="10"/>
+      <circle cx="710" cy="532" r="10"/>
+      <circle cx="740" cy="526" r="10"/>
+      <circle cx="770" cy="530" r="10"/>
+      <circle cx="800" cy="525" r="10"/>
+      <circle cx="830" cy="532" r="10"/>
+      <circle cx="860" cy="527" r="10"/>
+      <circle cx="890" cy="530" r="10"/>
+      <circle cx="920" cy="525" r="10"/>
+      <circle cx="950" cy="528" r="10"/>
+      <circle cx="980" cy="532" r="10"/>
+      <circle cx="1010" cy="526" r="10"/>
+      <circle cx="1040" cy="530" r="10"/>
+      <circle cx="1070" cy="528" r="10"/>
+    </g>
+    <!-- Filled body mass below heads -->
+    <rect x="190" y="535" width="900" height="60" fill="#2c1810" opacity="0.5"/>
+
+    <!-- Front row (larger/closer) -->
+    <g opacity="0.8">
+      <circle cx="150" cy="600" r="14"/>
+      <circle cx="190" cy="595" r="14"/>
+      <circle cx="230" cy="602" r="14"/>
+      <circle cx="270" cy="597" r="14"/>
+      <circle cx="315" cy="600" r="14"/>
+      <circle cx="360" cy="594" r="14"/>
+      <circle cx="405" cy="598" r="14"/>
+      <circle cx="450" cy="602" r="14"/>
+      <circle cx="495" cy="596" r="14"/>
+      <circle cx="540" cy="600" r="14"/>
+      <circle cx="585" cy="595" r="14"/>
+      <circle cx="630" cy="599" r="14"/>
+      <circle cx="675" cy="603" r="14"/>
+      <circle cx="720" cy="597" r="14"/>
+      <circle cx="765" cy="601" r="14"/>
+      <circle cx="810" cy="595" r="14"/>
+      <circle cx="855" cy="599" r="14"/>
+      <circle cx="900" cy="603" r="14"/>
+      <circle cx="945" cy="597" r="14"/>
+      <circle cx="990" cy="601" r="14"/>
+      <circle cx="1035" cy="596" r="14"/>
+      <circle cx="1080" cy="600" r="14"/>
+      <circle cx="1120" cy="597" r="14"/>
+    </g>
+    <rect x="140" y="610" width="1000" height="110" fill="#2c1810" opacity="0.7"/>
+  </g>
+
+  <!-- Raised hands in crowd -->
+  <g fill="#2c1810" opacity="0.4">
+    <path d="M300,530 L298,500 L302,500 L304,530" />
+    <path d="M500,525 L497,490 L503,490 L506,525" />
+    <path d="M700,530 L698,495 L702,495 L704,530" />
+    <path d="M850,525 L847,492 L853,492 L856,525" />
+    <path d="M400,530 L396,498 L404,498 L408,530" />
+    <path d="M600,528 L598,494 L602,494 L604,528" />
+  </g>
+
+  <!-- Stage lighting glow on crowd -->
+  <ellipse cx="640" cy="560" rx="400" ry="80" fill="#b8860b" opacity="0.04" filter="url(#spotBlur)"/>
+
+  <!-- Warm stage atmosphere -->
+  <rect width="1280" height="360" fill="#b8860b" opacity="0.02"/>
+</svg>

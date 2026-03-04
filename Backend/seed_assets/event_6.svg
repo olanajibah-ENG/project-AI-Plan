@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="showBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1810"/>
+      <stop offset="40%" stop-color="#3d2418"/>
+      <stop offset="100%" stop-color="#2c1810"/>
+    </linearGradient>
+    <linearGradient id="curtainLeft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c96442"/>
+      <stop offset="40%" stop-color="#a04e32"/>
+      <stop offset="100%" stop-color="#8a3e28"/>
+    </linearGradient>
+    <linearGradient id="curtainRight" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#c96442"/>
+      <stop offset="40%" stop-color="#a04e32"/>
+      <stop offset="100%" stop-color="#8a3e28"/>
+    </linearGradient>
+    <radialGradient id="stageSpot" cx="0.5" cy="0.3" r="0.6">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.4"/>
+      <stop offset="40%" stop-color="#b8860b" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="centerSpot" cx="0.5" cy="0.4" r="0.4">
+      <stop offset="0%" stop-color="#faf5ed" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#faf5ed" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="archPattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M15,0 L30,15 L15,30 L0,15 Z" fill="none" stroke="#b8860b" stroke-width="0.6" opacity="0.15"/>
+      <circle cx="15" cy="15" r="5" fill="none" stroke="#b8860b" stroke-width="0.4" opacity="0.1"/>
+    </pattern>
+    <pattern id="stagePattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M20,0 L40,20 L20,40 L0,20 Z" fill="none" stroke="#b8860b" stroke-width="0.3" opacity="0.08"/>
+      <circle cx="20" cy="20" r="8" fill="none" stroke="#b8860b" stroke-width="0.3" opacity="0.06"/>
+      <path d="M10,10 L30,10 L30,30 L10,30 Z" fill="none" stroke="#b8860b" stroke-width="0.2" opacity="0.04"/>
+    </pattern>
+    <filter id="showGlow">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    <filter id="spotGlow">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="720" fill="url(#showBg)"/>
+
+  <!-- Decorative arch frame -->
+  <g>
+    <!-- Outer arch -->
+    <path d="M180,680 L180,120 Q640,0 1100,120 L1100,680" fill="none" stroke="#b8860b" stroke-width="4" opacity="0.3"/>
+    <!-- Inner arch -->
+    <path d="M220,680 L220,150 Q640,40 1060,150 L1060,680" fill="none" stroke="#b8860b" stroke-width="2" opacity="0.2"/>
+
+    <!-- Arch fill with pattern -->
+    <path d="M180,680 L180,120 Q640,0 1100,120 L1100,680 L1060,680 L1060,150 Q640,40 220,150 L220,680 Z" fill="url(#archPattern)"/>
+
+    <!-- Decorative top ornament -->
+    <circle cx="640" cy="30" r="15" fill="none" stroke="#b8860b" stroke-width="2" opacity="0.3"/>
+    <circle cx="640" cy="30" r="8" fill="#b8860b" opacity="0.15"/>
+    <path d="M610,30 L640,10 L670,30" fill="none" stroke="#b8860b" stroke-width="1.5" opacity="0.2"/>
+    <path d="M610,30 L640,50 L670,30" fill="none" stroke="#b8860b" stroke-width="1.5" opacity="0.2"/>
+
+    <!-- Side ornamental details -->
+    <circle cx="180" cy="400" r="10" fill="none" stroke="#b8860b" stroke-width="1.5" opacity="0.2"/>
+    <circle cx="1100" cy="400" r="10" fill="none" stroke="#b8860b" stroke-width="1.5" opacity="0.2"/>
+
+    <!-- Arch spandrel decorations -->
+    <g fill="#b8860b" opacity="0.08">
+      <circle cx="280" cy="200" r="20"/>
+      <circle cx="1000" cy="200" r="20"/>
+      <circle cx="320" cy="160" r="15"/>
+      <circle cx="960" cy="160" r="15"/>
+    </g>
+  </g>
+
+  <!-- Stage back wall with geometric Islamic pattern -->
+  <rect x="220" y="150" width="840" height="530" fill="#2c1810" opacity="0.4"/>
+  <rect x="220" y="150" width="840" height="530" fill="url(#stagePattern)"/>
+
+  <!-- Stage spotlighting -->
+  <ellipse cx="640" cy="350" rx="300" ry="250" fill="url(#stageSpot)"/>
+  <ellipse cx="640" cy="400" rx="200" ry="150" fill="url(#centerSpot)"/>
+
+  <!-- Spotlight beams from above -->
+  <g>
+    <polygon points="500,0 440,400 560,400" fill="#b8860b" opacity="0.04"/>
+    <polygon points="640,0 570,400 710,400" fill="#b8860b" opacity="0.06"/>
+    <polygon points="780,0 720,400 840,400" fill="#b8860b" opacity="0.04"/>
+  </g>
+
+  <!-- Stage floor -->
+  <rect x="220" y="520" width="840" height="60" fill="#c96442" opacity="0.12"/>
+  <rect x="220" y="520" width="840" height="3" fill="#b8860b" opacity="0.15"/>
+
+  <!-- Stage floor pattern -->
+  <g stroke="#b8860b" stroke-width="0.3" fill="none" opacity="0.06">
+    <line x1="350" y1="520" x2="350" y2="580"/>
+    <line x1="480" y1="520" x2="480" y2="580"/>
+    <line x1="610" y1="520" x2="610" y2="580"/>
+    <line x1="740" y1="520" x2="740" y2="580"/>
+    <line x1="870" y1="520" x2="870" y2="580"/>
+    <line x1="220" y1="545" x2="1060" y2="545"/>
+    <line x1="220" y1="565" x2="1060" y2="565"/>
+  </g>
+
+  <!-- Spotlight circles on floor -->
+  <ellipse cx="640" cy="530" rx="120" ry="20" fill="#b8860b" opacity="0.06" filter="url(#spotGlow)"/>
+  <ellipse cx="450" cy="535" rx="80" ry="15" fill="#b8860b" opacity="0.04" filter="url(#spotGlow)"/>
+  <ellipse cx="830" cy="535" rx="80" ry="15" fill="#b8860b" opacity="0.04" filter="url(#spotGlow)"/>
+
+  <!-- Curtain drapes - left -->
+  <g>
+    <path d="M180,100 C200,100 210,120 210,150 C210,250 200,350 190,450 C185,520 180,580 180,680 L180,680 L140,680 L140,580 C145,480 150,380 155,280 C160,180 165,120 180,100 Z" fill="url(#curtainLeft)"/>
+    <!-- Curtain fold highlights -->
+    <path d="M175,150 C180,250 178,350 175,450 C173,530 172,600 170,680" fill="none" stroke="#d4894a" stroke-width="1.5" opacity="0.3"/>
+    <path d="M190,130 C195,230 192,330 190,430 C188,510 187,590 185,680" fill="none" stroke="#d4894a" stroke-width="1" opacity="0.2"/>
+    <!-- Curtain tie -->
+    <ellipse cx="185" cy="250" rx="15" ry="8" fill="#b8860b" opacity="0.3"/>
+
+    <!-- Extended curtain drape -->
+    <path d="M140,100 C155,100 165,110 170,130 C175,180 168,280 160,380 C152,480 145,580 140,680 L100,680 L100,600 C105,500 110,400 120,300 C130,200 135,120 140,100 Z" fill="#c96442" opacity="0.7"/>
+    <path d="M130,150 C135,250 130,350 128,450 C126,530 125,600 123,680" fill="none" stroke="#d4894a" stroke-width="1" opacity="0.2"/>
+  </g>
+
+  <!-- Curtain drapes - right -->
+  <g>
+    <path d="M1100,100 C1080,100 1070,120 1070,150 C1070,250 1080,350 1090,450 C1095,520 1100,580 1100,680 L1100,680 L1140,680 L1140,580 C1135,480 1130,380 1125,280 C1120,180 1115,120 1100,100 Z" fill="url(#curtainRight)"/>
+    <path d="M1105,150 C1100,250 1102,350 1105,450 C1107,530 1108,600 1110,680" fill="none" stroke="#d4894a" stroke-width="1.5" opacity="0.3"/>
+    <path d="M1090,130 C1085,230 1088,330 1090,430 C1092,510 1093,590 1095,680" fill="none" stroke="#d4894a" stroke-width="1" opacity="0.2"/>
+    <ellipse cx="1095" cy="250" rx="15" ry="8" fill="#b8860b" opacity="0.3"/>
+
+    <path d="M1140,100 C1125,100 1115,110 1110,130 C1105,180 1112,280 1120,380 C1128,480 1135,580 1140,680 L1180,680 L1180,600 C1175,500 1170,400 1160,300 C1150,200 1145,120 1140,100 Z" fill="#c96442" opacity="0.7"/>
+    <path d="M1150,150 C1145,250 1150,350 1152,450 C1154,530 1155,600 1157,680" fill="none" stroke="#d4894a" stroke-width="1" opacity="0.2"/>
+  </g>
+
+  <!-- Decorative border patterns at arch base -->
+  <g fill="#b8860b" opacity="0.1">
+    <rect x="180" y="670" width="920" height="4" rx="1"/>
+    <rect x="180" y="660" width="920" height="2" rx="1"/>
+  </g>
+
+  <!-- Center stage decorative backdrop panel -->
+  <g>
+    <rect x="480" y="200" width="320" height="280" fill="none" stroke="#b8860b" stroke-width="1.5" opacity="0.15" rx="4"/>
+    <rect x="495" y="215" width="290" height="250" fill="none" stroke="#b8860b" stroke-width="0.8" opacity="0.1" rx="3"/>
+    <!-- Islamic star pattern inside panel -->
+    <g stroke="#b8860b" fill="none" opacity="0.08">
+      <path d="M640,240 L670,280 L660,320 L640,340 L620,320 L610,280 Z" stroke-width="0.8"/>
+      <circle cx="640" cy="290" r="25" stroke-width="0.6"/>
+      <path d="M640,380 L665,400 L655,430 L640,445 L625,430 L615,400 Z" stroke-width="0.8"/>
+      <circle cx="640" cy="410" r="20" stroke-width="0.6"/>
+      <path d="M540,300 L560,280 L580,290 L580,310 L560,320 L540,310 Z" stroke-width="0.6"/>
+      <path d="M700,300 L720,280 L740,290 L740,310 L720,320 L700,310 Z" stroke-width="0.6"/>
+    </g>
+  </g>
+
+  <!-- Performer silhouettes -->
+  <g fill="#2c1810" opacity="0.4">
+    <!-- Center performer -->
+    <circle cx="640" cy="470" r="15"/>
+    <path d="M625,485 L618,540 L632,540 L636,510 L640,545 L644,510 L648,540 L662,540 L655,485 Z"/>
+
+    <!-- Left performer -->
+    <circle cx="480" cy="480" r="12"/>
+    <path d="M468,492 L463,540 L474,540 L477,515 L480,540 L483,515 L486,540 L497,540 L492,492 Z"/>
+
+    <!-- Right performer -->
+    <circle cx="800" cy="480" r="12"/>
+    <path d="M788,492 L783,540 L794,540 L797,515 L800,540 L803,515 L806,540 L817,540 L812,492 Z"/>
+  </g>
+
+  <!-- Audience area (below stage) -->
+  <rect x="0" y="580" width="1280" height="140" fill="#2c1810" opacity="0.6"/>
+
+  <!-- Audience heads -->
+  <g fill="#2c1810" opacity="0.5">
+    <circle cx="100" cy="620" r="10"/>
+    <circle cx="140" cy="615" r="10"/>
+    <circle cx="180" cy="622" r="10"/>
+    <circle cx="220" cy="618" r="10"/>
+    <circle cx="260" cy="620" r="10"/>
+    <circle cx="300" cy="614" r="10"/>
+    <circle cx="340" cy="618" r="10"/>
+    <circle cx="380" cy="622" r="10"/>
+    <circle cx="420" cy="616" r="10"/>
+    <circle cx="460" cy="620" r="10"/>
+    <circle cx="500" cy="615" r="10"/>
+    <circle cx="540" cy="619" r="10"/>
+    <circle cx="580" cy="622" r="10"/>
+    <circle cx="620" cy="616" r="10"/>
+    <circle cx="660" cy="620" r="10"/>
+    <circle cx="700" cy="614" r="10"/>
+    <circle cx="740" cy="618" r="10"/>
+    <circle cx="780" cy="622" r="10"/>
+    <circle cx="820" cy="616" r="10"/>
+    <circle cx="860" cy="620" r="10"/>
+    <circle cx="900" cy="615" r="10"/>
+    <circle cx="940" cy="619" r="10"/>
+    <circle cx="980" cy="622" r="10"/>
+    <circle cx="1020" cy="618" r="10"/>
+    <circle cx="1060" cy="620" r="10"/>
+    <circle cx="1100" cy="614" r="10"/>
+    <circle cx="1140" cy="618" r="10"/>
+    <circle cx="1180" cy="622" r="10"/>
+  </g>
+  <rect x="80" y="626" width="1120" height="94" fill="#2c1810" opacity="0.5"/>
+
+  <!-- Warm stage glow -->
+  <ellipse cx="640" cy="450" rx="250" ry="150" fill="#b8860b" opacity="0.03" filter="url(#showGlow)"/>
+</svg>

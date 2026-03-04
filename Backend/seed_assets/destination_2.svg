@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="dawnSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a" stop-opacity="0.7"/>
+      <stop offset="35%" stop-color="#3d8b7a"/>
+      <stop offset="60%" stop-color="#c9a86c"/>
+      <stop offset="85%" stop-color="#faf5ed"/>
+      <stop offset="100%" stop-color="#faf5ed" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="mtnMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a6b5a" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="mtnNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1810"/>
+      <stop offset="100%" stop-color="#1a3a30"/>
+    </linearGradient>
+    <radialGradient id="dawnGlow" cx="0.7" cy="0.55" r="0.5">
+      <stop offset="0%" stop-color="#faf5ed" stop-opacity="0.5"/>
+      <stop offset="40%" stop-color="#b8860b" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#1a6b5a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="mistBlur">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    <filter id="softMist">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <!-- Sky gradient -->
+  <rect width="1280" height="720" fill="url(#dawnSky)"/>
+
+  <!-- Dawn glow on horizon -->
+  <ellipse cx="900" cy="380" rx="500" ry="200" fill="url(#dawnGlow)"/>
+
+  <!-- Subtle sky streaks -->
+  <path d="M0,120 Q320,100 640,115 Q960,130 1280,110" fill="none" stroke="#faf5ed" stroke-width="1" opacity="0.08"/>
+  <path d="M0,160 Q320,145 640,155 Q960,165 1280,150" fill="none" stroke="#faf5ed" stroke-width="0.8" opacity="0.06"/>
+
+  <!-- Far mountain range -->
+  <path d="M0,420 L80,350 L160,380 L280,300 L380,340 L480,280 L560,320 L680,260 L780,300 L860,270 L960,310 L1040,250 L1120,290 L1200,260 L1280,300 L1280,500 L0,500 Z" fill="#2c1810" opacity="0.25"/>
+
+  <!-- Mist between far and mid mountains -->
+  <ellipse cx="640" cy="420" rx="700" ry="60" fill="#faf5ed" opacity="0.3" filter="url(#mistBlur)"/>
+  <ellipse cx="300" cy="400" rx="250" ry="40" fill="#faf5ed" opacity="0.2" filter="url(#mistBlur)"/>
+  <ellipse cx="1000" cy="410" rx="300" ry="45" fill="#faf5ed" opacity="0.25" filter="url(#mistBlur)"/>
+
+  <!-- Mid mountain range -->
+  <path d="M0,480 L60,420 L140,450 L240,370 L340,410 L420,350 L520,400 L600,340 L700,380 L800,320 L900,370 L980,340 L1060,380 L1140,330 L1220,370 L1280,350 L1280,550 L0,550 Z" fill="url(#mtnMid)" opacity="0.7"/>
+
+  <!-- Mist in valleys -->
+  <ellipse cx="400" cy="470" rx="200" ry="30" fill="#faf5ed" opacity="0.25" filter="url(#softMist)"/>
+  <ellipse cx="800" cy="460" rx="180" ry="25" fill="#faf5ed" opacity="0.2" filter="url(#softMist)"/>
+  <ellipse cx="1100" cy="475" rx="160" ry="28" fill="#faf5ed" opacity="0.22" filter="url(#softMist)"/>
+
+  <!-- Near mountain range -->
+  <path d="M0,520 L100,460 L200,490 L320,420 L440,470 L540,400 L660,450 L760,390 L880,440 L980,400 L1080,450 L1160,410 L1240,440 L1280,420 L1280,600 L0,600 Z" fill="url(#mtnNear)" opacity="0.85"/>
+
+  <!-- Mountain surface detail lines -->
+  <path d="M320,420 L380,460 L340,490" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.2"/>
+  <path d="M540,400 L590,440 L560,470" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.2"/>
+  <path d="M760,390 L810,430 L780,460" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.15"/>
+  <path d="M980,400 L1030,440 L1000,470" fill="none" stroke="#1a6b5a" stroke-width="0.8" opacity="0.15"/>
+
+  <!-- Pine tree silhouettes - back row -->
+  <g fill="#2c1810" opacity="0.6">
+    <path d="M50,600 L60,540 L70,600 Z"/>
+    <path d="M56,570 L60,540 L64,570 Z"/>
+    <path d="M110,590 L122,520 L134,590 Z"/>
+    <path d="M117,550 L122,520 L127,550 Z"/>
+    <path d="M180,595 L190,535 L200,595 Z"/>
+    <path d="M186,560 L190,535 L194,560 Z"/>
+    <path d="M260,600 L272,530 L284,600 Z"/>
+    <path d="M267,560 L272,530 L277,560 Z"/>
+    <path d="M350,590 L360,540 L370,590 Z"/>
+    <path d="M356,560 L360,540 L364,560 Z"/>
+    <path d="M440,598 L452,525 L464,598 Z"/>
+    <path d="M447,555 L452,525 L457,555 Z"/>
+    <path d="M530,592 L540,538 L550,592 Z"/>
+    <path d="M536,560 L540,538 L544,560 Z"/>
+    <path d="M620,600 L632,532 L644,600 Z"/>
+    <path d="M627,558 L632,532 L637,558 Z"/>
+    <path d="M710,594 L720,540 L730,594 Z"/>
+    <path d="M716,562 L720,540 L724,562 Z"/>
+    <path d="M800,598 L812,528 L824,598 Z"/>
+    <path d="M807,556 L812,528 L817,556 Z"/>
+    <path d="M900,592 L910,542 L920,592 Z"/>
+    <path d="M906,564 L910,542 L914,564 Z"/>
+    <path d="M980,600 L992,530 L1004,600 Z"/>
+    <path d="M987,558 L992,530 L997,558 Z"/>
+    <path d="M1060,594 L1070,536 L1080,594 Z"/>
+    <path d="M1066,558 L1070,536 L1074,558 Z"/>
+    <path d="M1150,598 L1162,526 L1174,598 Z"/>
+    <path d="M1157,554 L1162,526 L1167,554 Z"/>
+    <path d="M1230,596 L1240,540 L1250,596 Z"/>
+    <path d="M1236,562 L1240,540 L1244,562 Z"/>
+  </g>
+
+  <!-- Pine tree silhouettes - front row -->
+  <g fill="#2c1810" opacity="0.9">
+    <path d="M20,720 L40,610 L60,720 Z"/>
+    <path d="M32,650 L40,610 L48,650 Z"/>
+    <rect x="37" y="690" width="6" height="30" fill="#2c1810"/>
+    <path d="M90,720 L115,590 L140,720 Z"/>
+    <path d="M100,640 L115,590 L130,640 Z"/>
+    <rect x="112" y="690" width="6" height="30"/>
+    <path d="M200,720 L220,605 L240,720 Z"/>
+    <path d="M208,650 L220,605 L232,650 Z"/>
+    <rect x="217" y="695" width="6" height="25"/>
+    <path d="M310,720 L335,580 L360,720 Z"/>
+    <path d="M320,630 L335,580 L350,630 Z"/>
+    <rect x="332" y="690" width="6" height="30"/>
+    <path d="M430,720 L450,600 L470,720 Z"/>
+    <path d="M438,648 L450,600 L462,648 Z"/>
+    <rect x="447" y="692" width="6" height="28"/>
+    <path d="M550,720 L572,588 L594,720 Z"/>
+    <path d="M560,638 L572,588 L584,638 Z"/>
+    <rect x="569" y="690" width="6" height="30"/>
+    <path d="M680,720 L700,608 L720,720 Z"/>
+    <path d="M688,652 L700,608 L712,652 Z"/>
+    <rect x="697" y="694" width="6" height="26"/>
+    <path d="M790,720 L815,582 L840,720 Z"/>
+    <path d="M800,632 L815,582 L830,632 Z"/>
+    <rect x="812" y="690" width="6" height="30"/>
+    <path d="M920,720 L940,600 L960,720 Z"/>
+    <path d="M928,648 L940,600 L952,648 Z"/>
+    <rect x="937" y="692" width="6" height="28"/>
+    <path d="M1040,720 L1062,592 L1084,720 Z"/>
+    <path d="M1050,640 L1062,592 L1074,640 Z"/>
+    <rect x="1059" y="690" width="6" height="30"/>
+    <path d="M1150,720 L1170,604 L1190,720 Z"/>
+    <path d="M1158,650 L1170,604 L1182,650 Z"/>
+    <rect x="1167" y="694" width="6" height="26"/>
+    <path d="M1230,720 L1255,586 L1280,720 Z"/>
+    <path d="M1240,634 L1255,586 L1270,634 Z"/>
+    <rect x="1252" y="690" width="6" height="30"/>
+  </g>
+
+  <!-- Foreground ground -->
+  <path d="M0,680 Q320,660 640,675 Q960,690 1280,670 L1280,720 L0,720 Z" fill="#2c1810"/>
+  <path d="M0,700 Q320,690 640,698 Q960,706 1280,695" fill="none" stroke="#1a3a30" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Low mist at treeline -->
+  <ellipse cx="400" cy="650" rx="300" ry="20" fill="#faf5ed" opacity="0.08" filter="url(#softMist)"/>
+  <ellipse cx="900" cy="640" rx="250" ry="18" fill="#faf5ed" opacity="0.06" filter="url(#softMist)"/>
+
+  <!-- Birds in distance -->
+  <g fill="none" stroke="#2c1810" stroke-width="1.2" opacity="0.3">
+    <path d="M850,180 Q855,174 860,180 Q865,174 870,180"/>
+    <path d="M880,195 Q884,190 888,195 Q892,190 896,195"/>
+    <path d="M830,200 Q834,195 838,200 Q842,195 846,200"/>
+    <path d="M870,165 Q874,160 878,165 Q882,160 886,165"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+:root {
+  --bg-base: #faf5ed;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #f0e8da;
+  --text-primary: #2c1810;
+  --text-secondary: #7a6652;
+  --text-muted: #a89880;
+  --border-subtle: rgba(44, 24, 16, 0.08);
+  --border-default: rgba(44, 24, 16, 0.12);
+  --terracotta: #c96442;
+  --teal: #1a6b5a;
+  --gold: #b8860b;
+  --error: #c94c4c;
+  --success: #2d7a5f;
+}
